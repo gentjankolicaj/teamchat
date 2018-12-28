@@ -1,0 +1,3 @@
+git rm -r --cached . ->The series of commands below will remove all of the items from the Git Index (not from the working directory or local repo)
+git add . ->And then updates the Git Index, while respecting git ignores. PS. Index = Cache
+git commit -am "Remove ignored files" ->Commits changes.
