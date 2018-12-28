@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration
+
 @EnableWebSecurity
 public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -41,7 +41,8 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@PostConstruct
 	public void printBeans() {
 		String [] beanNames=context.getBeanDefinitionNames();
-		System.out.println("---------------------------------------");
+		System.out.println();
+		System.out.println("----------------After Spring Security init ---------------------");
 		for(String name:beanNames) {
 			System.out.println(name);
 		}
