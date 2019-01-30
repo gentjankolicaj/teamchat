@@ -51,7 +51,7 @@ public class Team implements Serializable {
 	
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="team")
-	private List<Chat> chats;
+	private List<Message> messages;
 	
 	
 	@Column(name="creation_date")
@@ -63,26 +63,23 @@ public class Team implements Serializable {
 	private Date deletionDate;
 
 
-
 	public Team() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-
-	public Team(Long id, String name, Department department, List<User> users, List<Chat> chats, Date creationDate,
-			Date deletionDate) {
+	public Team(Long id, String name, Department department, List<User> users, List<Message> messages,
+			Date creationDate, Date deletionDate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.department = department;
 		this.users = users;
-		this.chats = chats;
+		this.messages = messages;
 		this.creationDate = creationDate;
 		this.deletionDate = deletionDate;
 	}
-
 
 
 	public Long getId() {
@@ -90,11 +87,9 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 
 	public String getName() {
@@ -102,11 +97,9 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 
 	public Department getDepartment() {
@@ -114,11 +107,9 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-
 
 
 	public List<User> getUsers() {
@@ -126,23 +117,19 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
 
-
-	public List<Chat> getChats() {
-		return chats;
+	public List<Message> getMessages() {
+		return messages;
 	}
 
 
-
-	public void setChats(List<Chat> chats) {
-		this.chats = chats;
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
-
 
 
 	public Date getCreationDate() {
@@ -150,11 +137,9 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
 
 
 	public Date getDeletionDate() {
@@ -162,12 +147,9 @@ public class Team implements Serializable {
 	}
 
 
-
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
-
-	
 	
 }
 	

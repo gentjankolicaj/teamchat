@@ -27,10 +27,17 @@ import javax.persistence.TemporalType;
 @Table(name="organization")
 public class Organization implements Serializable {
 	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="industry_id")
+	private Industry industry;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="creator_id")
+	private User creator;
 	
 	@Column(name="name")
 	private String  name;
@@ -41,42 +48,28 @@ public class Organization implements Serializable {
 	@Column(name="adress")
 	private String adress;
 	
-	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="country_id")
 	private Country country;
 	
-	
 	@Column(name="url")
 	private String url;
-	
 	
 	@Column(name="email")
 	private String email;
 	
-	
 	@Column(name="phone")
 	private String phone;
 	
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="industry_id")
-	private Industry industry;
-	
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="creator_id")
-	private User creator;
-	
-	
+	@Column(name="description")
+	private String description;
+
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="organization")
 	private List<Department> departments;
-	
 	
 	@Column(name="creation_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
-	
 	
 	@Column(name="deletion_date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -89,11 +82,13 @@ public class Organization implements Serializable {
 	}
 
 
-	public Organization(Long id, String name, String city, String adress, Country country, String url, String email,
-			String phone, Industry industry, User creator, List<Department> departments, Date creationDate,
-			Date deletionDate) {
+	public Organization(Long id, Industry industry, User creator, String name, String city, String adress,
+			Country country, String url, String email, String phone, String description, List<Department> departments,
+			Date creationDate, Date deletionDate) {
 		super();
 		this.id = id;
+		this.industry = industry;
+		this.creator = creator;
 		this.name = name;
 		this.city = city;
 		this.adress = adress;
@@ -101,8 +96,7 @@ public class Organization implements Serializable {
 		this.url = url;
 		this.email = email;
 		this.phone = phone;
-		this.industry = industry;
-		this.creator = creator;
+		this.description = description;
 		this.departments = departments;
 		this.creationDate = creationDate;
 		this.deletionDate = deletionDate;
@@ -116,6 +110,26 @@ public class Organization implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public Industry getIndustry() {
+		return industry;
+	}
+
+
+	public void setIndustry(Industry industry) {
+		this.industry = industry;
+	}
+
+
+	public User getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 
@@ -189,23 +203,13 @@ public class Organization implements Serializable {
 	}
 
 
-	public Industry getIndustry() {
-		return industry;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setIndustry(Industry industry) {
-		this.industry = industry;
-	}
-
-
-	public User getCreator() {
-		return creator;
-	}
-
-
-	public void setCreator(User creator) {
-		this.creator = creator;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -237,10 +241,6 @@ public class Organization implements Serializable {
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
-	
-	
-	
-	
-	
 
+	
 }

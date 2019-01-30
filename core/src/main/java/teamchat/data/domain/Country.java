@@ -25,7 +25,7 @@ import javax.persistence.JoinColumn;
  */
 @Entity
 @Table(name="country")
-@JsonIgnoreProperties({"userAdressList","currencies","languages"})
+@JsonIgnoreProperties({"userAdressList","currencies","languages"})//just for testing
 public class Country implements Serializable{
 	
 	@Id
@@ -155,7 +155,6 @@ public class Country implements Serializable{
 		return "Country [id=" + id + ", countryName=" + countryName + ", isoCodes=" + isoCodes + ", phonePrefix="
 				+ phonePrefix + "]";
 	}
-
 
 	
 

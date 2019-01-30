@@ -33,13 +33,15 @@ public class Department implements Serializable {
 	@JoinColumn(name="organization_id")
 	private Organization organization;
 	
-	@Column(name="name")
-	private String name;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="creator_id")
 	private User creator;
 	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="description")
+	private String description;
 	
 	@Column(name="creation_date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -49,31 +51,34 @@ public class Department implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deletionDate;
 	
+	@Column(name="modification_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modificationDate;
 	
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="department")
+	
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="department") //join is done at field department in class Team,with column Team.department_id
 	private List<Team> teams;
 
 
-	
 	public Department() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-
-	public Department(Long id, Organization organization, String name, User creator, Date creationDate,
-			Date deletionDate, List<Team> teams) {
+	public Department(Long id, Organization organization, User creator, String name, String description,
+			Date creationDate, Date deletionDate, Date modificationDate, List<Team> teams) {
 		super();
 		this.id = id;
 		this.organization = organization;
-		this.name = name;
 		this.creator = creator;
+		this.name = name;
+		this.description = description;
 		this.creationDate = creationDate;
 		this.deletionDate = deletionDate;
+		this.modificationDate = modificationDate;
 		this.teams = teams;
 	}
-
 
 
 	public Long getId() {
@@ -81,11 +86,9 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 
 	public Organization getOrganization() {
@@ -93,23 +96,9 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-
-
-
-	public String getName() {
-		return name;
-	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 
 
 	public User getCreator() {
@@ -117,11 +106,29 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
 
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 
 	public Date getCreationDate() {
@@ -129,11 +136,9 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
 
 
 	public Date getDeletionDate() {
@@ -141,11 +146,19 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
 
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
 
 
 	public List<Team> getTeams() {
@@ -153,12 +166,9 @@ public class Department implements Serializable {
 	}
 
 
-
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
-	
-	
 
 
 }

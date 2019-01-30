@@ -29,6 +29,7 @@ public class Language implements Serializable {
 	@Column(name="language")
 	private String language;
 	
+	
 	@Column(name="code")
 	private String code;
 	
@@ -90,10 +91,6 @@ public class Language implements Serializable {
 	public void setCountries(List<Country> countries) {
 		this.countries = countries;
 	}
-	
-	
-	
-	
 	
 
 }

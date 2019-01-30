@@ -21,15 +21,16 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="chat")
-public class Chat implements Serializable {
-
-
+@Table(name="message")
+public class Message implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@ManyToOne(fetch=FetchType.EAGER,optional=true)
+	@JoinColumn(name="team_id")
+	private Team team;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="sender")
@@ -44,14 +45,13 @@ public class Chat implements Serializable {
 	private String message;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER,optional=true)
-	@JoinColumn(name="team_id")
-	private Team team;
-	
-	
 	@Column(name="creation_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
+	
+	@Column(name="deletion_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date deletionDate;
 	
 	
 	@Column(name="modification_date")
@@ -63,21 +63,22 @@ public class Chat implements Serializable {
 	private Long modifiedBy;
 
 
-	public Chat() {
+	public Message() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Chat(Long id, User sender, User receiver, String message, Team team, Date creationDate,
+	public Message(Long id, Team team, User sender, User receiver, String message, Date creationDate, Date deletionDate,
 			Date modificationDate, Long modifiedBy) {
 		super();
 		this.id = id;
+		this.team = team;
 		this.sender = sender;
 		this.receiver = receiver;
 		this.message = message;
-		this.team = team;
 		this.creationDate = creationDate;
+		this.deletionDate = deletionDate;
 		this.modificationDate = modificationDate;
 		this.modifiedBy = modifiedBy;
 	}
@@ -90,6 +91,16 @@ public class Chat implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public Team getTeam() {
+		return team;
+	}
+
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 
@@ -123,16 +134,6 @@ public class Chat implements Serializable {
 	}
 
 
-	public Team getTeam() {
-		return team;
-	}
-
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -140,6 +141,16 @@ public class Chat implements Serializable {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+
+	public Date getDeletionDate() {
+		return deletionDate;
+	}
+
+
+	public void setDeletionDate(Date deletionDate) {
+		this.deletionDate = deletionDate;
 	}
 
 
@@ -161,7 +172,7 @@ public class Chat implements Serializable {
 	public void setModifiedBy(Long modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
-	
+
 
 	
 }

@@ -5,22 +5,20 @@ package teamchat.data.domain;
  * @author gentjan kolicaj
  *
  */
-public enum Gender {
+public enum Sex {
 	
-	FEMALE("FEMALE"),MALE("MALE") ,OTHER("OTHER");
+	M("M"),F("F") ,O("O");
 	
 	private String value;
 	
 	
-	private Gender(String value) {
+	private Sex(String value) {
 		this.value=value;
 	}
-
 
 	public String getValue() {
 		return value;
 	}
-	
-	
+
 
 }

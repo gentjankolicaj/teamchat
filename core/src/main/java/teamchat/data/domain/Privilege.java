@@ -1,6 +1,5 @@
 package teamchat.data.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,38 +17,36 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="industry")
-public class Industry implements Serializable {
+@Table(name="privilege")
+public class Privilege {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	
-	@Column(name="name")
-	private String name;
-	
+	@Column(name="identifier")
+	private String identifier;
 	
 	@Column(name="description")
 	private String description;
-
 	
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="industry")
-	private List<Organization> organization;
+	
+	@ManyToMany(fetch=FetchType.LAZY,mappedBy="privileges")
+	private List<Group> groups;
 
 
-	public Industry() {
+	public Privilege() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Industry(Long id, String name, String description, List<Organization> organization) {
+	public Privilege(Long id, String identifier, String description, List<Group> groups) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.identifier = identifier;
 		this.description = description;
-		this.organization = organization;
+		this.groups = groups;
 	}
 
 
@@ -63,13 +60,13 @@ public class Industry implements Serializable {
 	}
 
 
-	public String getName() {
-		return name;
+	public String getIdentifier() {
+		return identifier;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 
@@ -83,14 +80,14 @@ public class Industry implements Serializable {
 	}
 
 
-	public List<Organization> getOrganization() {
-		return organization;
+	public List<Group> getGroups() {
+		return groups;
 	}
 
 
-	public void setOrganization(List<Organization> organization) {
-		this.organization = organization;
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
 	}
 
-
+	
 }

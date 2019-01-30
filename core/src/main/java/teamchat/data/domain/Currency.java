@@ -38,7 +38,7 @@ public class Currency implements Serializable{
 	private String currencySymbol;
 	
 	
-	@ManyToMany(fetch=FetchType.LAZY,mappedBy="currencies")
+	@ManyToMany(fetch=FetchType.LAZY,mappedBy="currencies")//currencies is the field identifier on class country
 	private List<Country> countries;
 
 	
