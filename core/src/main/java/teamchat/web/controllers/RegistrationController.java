@@ -1,10 +1,10 @@
-package teamchat.web.controllers.jsp;
+package teamchat.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/jsp/login")
-public class JspLoginController {
+@RequestMapping("/registration")
+public class RegistrationController {
 
 }

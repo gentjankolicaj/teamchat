@@ -1,4 +1,4 @@
-package teamchat.web.controllers.jsp;
+package teamchat.web.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/jsp")
-public class JspHomeController {
+@RequestMapping("/")
+public class HomeController {
 	
 	
-	@RequestMapping({"/","index","index.xml","index.html"})
+	@RequestMapping({"index","index.xml","index.html"})
 	public String showHome() {
 		
 		return "index";

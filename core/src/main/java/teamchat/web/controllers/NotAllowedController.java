@@ -1,14 +1,14 @@
-package teamchat.web.controllers.jsp;
+package teamchat.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/jsp/**")
-public class JspNotAllowedController {
+@RequestMapping("/")
+public class NotAllowedController {
 
 	
-	@RequestMapping({"","/","/**"})
+	@RequestMapping({"","/**"})
 	public String showNotAllowed() {
 		
 		return "not-allowed";

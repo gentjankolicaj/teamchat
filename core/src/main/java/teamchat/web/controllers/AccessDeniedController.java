@@ -1,0 +1,16 @@
+package teamchat.web.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/access-denied")
+public class AccessDeniedController {
+
+	
+	@RequestMapping({"","/","/**"})
+	public String showAccessDenied() {
+		
+		return "access-denied";
+	}
+}
