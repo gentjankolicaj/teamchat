@@ -1,4 +1,4 @@
-package teamchat.data.dao;
+package teamchat.data.dao.impl;
 
 import java.util.List;
 import org.hibernate.query.Query;
@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import teamchat.data.dao.UserTypeDao;
 import teamchat.data.domain.UserType;
 
 

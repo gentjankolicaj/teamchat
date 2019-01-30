@@ -1,4 +1,4 @@
-package teamchat.data.dao;
+package teamchat.data.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import teamchat.data.dao.UserContactDao;
 import teamchat.data.domain.UserContact;
 
 
