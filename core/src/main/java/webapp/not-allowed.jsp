@@ -5,7 +5,14 @@
 <html>
 
 <head>
-	<title>Not allowed to acess these urls</title>
+	<title>List Customers</title>
+	
+	<!-- reference our style sheet -->
+
+	<link type="text/css"
+		  rel="stylesheet"
+		  href="${pageContext.request.contextPath}/resources/static/css/style.css" />
+
 </head>
 
 <body>
