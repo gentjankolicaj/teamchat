@@ -1,37 +1,35 @@
 package teamchat.rest.exception;
-
 /**
  * 
  * @author gentjan kolicaj
  *
  */
-public class LanguageException extends RuntimeException {
+public class UserAdressException extends RuntimeException {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5443331177482089124L;
+	private static final long serialVersionUID = 7305651650814753504L;
 
-	public LanguageException() {
+	public UserAdressException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LanguageException(String message, Throwable cause) {
+	public UserAdressException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public LanguageException(String message) {
+	public UserAdressException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public LanguageException(Throwable cause) {
+	public UserAdressException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 
 }

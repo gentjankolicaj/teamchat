@@ -7,6 +7,11 @@ package teamchat.rest.exception;
  */
 public class UserException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5761491778151823696L;
+
 	public UserException() {
 		super();
 		// TODO Auto-generated constructor stub

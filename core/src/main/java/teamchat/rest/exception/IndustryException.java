@@ -7,6 +7,11 @@ package teamchat.rest.exception;
  */
 public class IndustryException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7571333035953623905L;
+
 	public IndustryException() {
 		super();
 		// TODO Auto-generated constructor stub

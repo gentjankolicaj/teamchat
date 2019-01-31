@@ -6,6 +6,11 @@ package teamchat.rest.exception;
  */
 public class AuthenticationAttemptException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3015101287358175187L;
+
 	public AuthenticationAttemptException() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -6,6 +6,11 @@ package teamchat.rest.exception;
  */
 public class CountryException  extends RuntimeException{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2275764959419368141L;
+
 	public CountryException() {
 		super();
 		// TODO Auto-generated constructor stub
