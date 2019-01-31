@@ -21,16 +21,22 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="attempt")
-public class Attempt implements Serializable {
+@Table(name="authentication_attempt")
+public class AuthenticationAttempt implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(optional=false)
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@Column(name="email_or_username")
+	private String emailOrUsername;
+	
+	@Column(name="password")
+	private String password;
 	
 	@Column(name="status")
 	private String status;
@@ -41,18 +47,21 @@ public class Attempt implements Serializable {
 	@Column(name="creation_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
-	
 
-	public Attempt() {
+	
+	public AuthenticationAttempt() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Attempt(Long id, User user, String status, String platfrom, Date creationDate) {
+	public AuthenticationAttempt(Long id, User user, String emailOrUsername, String password, String status,
+			String platfrom, Date creationDate) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.emailOrUsername = emailOrUsername;
+		this.password = password;
 		this.status = status;
 		this.platfrom = platfrom;
 		this.creationDate = creationDate;
@@ -76,6 +85,26 @@ public class Attempt implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public String getEmailOrUsername() {
+		return emailOrUsername;
+	}
+
+
+	public void setEmailOrUsername(String emailOrUsername) {
+		this.emailOrUsername = emailOrUsername;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -107,10 +136,5 @@ public class Attempt implements Serializable {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	
-	
-	
-	
-	
-	
+
 }

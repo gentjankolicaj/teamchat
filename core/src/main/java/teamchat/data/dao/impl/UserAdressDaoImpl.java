@@ -1,5 +1,6 @@
 package teamchat.data.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -70,17 +71,18 @@ public class UserAdressDaoImpl implements UserAdressDao {
 	}
 
 	@Override
-	public void save(UserAdress userAdress) throws Exception {
+	public UserAdress save(UserAdress userAdress) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(userAdress);
+		return userAdress;
 
 	}
 
 	@Override
-	public void update(UserAdress userAdress) throws Exception {
+	public UserAdress update(UserAdress userAdress) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(userAdress);
-
+		return userAdress;
 	}
 
 	@Override
@@ -91,12 +93,59 @@ public class UserAdressDaoImpl implements UserAdressDao {
 	}
 
 	@Override
-	public int deleteById(Long id) throws Exception {
+	public void deleteById(Long id) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "delete from UserAdress U where U.id=:var";
 		Query<UserAdress> query = session.createQuery(hql, UserAdress.class);
 		query.setParameter("var", id);
-		return query.executeUpdate();
+		query.executeUpdate();
+	}
+
+	@Override
+	public List<UserAdress> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<UserAdress> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			UserAdress tmp = session.get(UserAdress.class, id);
+			list.add(tmp);
+		}
+		return list;
+	}
+
+	@Override
+	public List<UserAdress> saveAll(List<UserAdress> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (UserAdress tmp : entities)
+			session.save(tmp);
+
+		return entities;
+	}
+
+	@Override
+	public List<UserAdress> updateAll(List<UserAdress> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (UserAdress tmp : entities)
+			session.saveOrUpdate(tmp);
+
+		return entities;
+	}
+
+	@Override
+	public void deleteAll(List<UserAdress> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (UserAdress tmp : entities)
+			session.delete(tmp);
+
+	}
+
+	@Override
+	public boolean existById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		UserAdress tmp = session.get(UserAdress.class, id);
+		if (tmp != null)
+			return true;
+		else
+			return false;
 	}
 
 }

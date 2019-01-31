@@ -1,5 +1,6 @@
 package teamchat.data.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -11,20 +12,17 @@ import org.springframework.stereotype.Repository;
 import teamchat.data.dao.TeamDao;
 import teamchat.data.domain.Team;
 
-
 /**
  * 
  * @author gentjan kolicaj
  *
  */
 @Repository
-public class TeamDaoImpl implements TeamDao{
-	
-	
+public class TeamDaoImpl implements TeamDao {
+
 	private SessionFactory sessionFactory;
-	
-	
-    @Autowired
+
+	@Autowired
 	public TeamDaoImpl(SessionFactory sessionFactory) {
 		super();
 		this.sessionFactory = sessionFactory;
@@ -32,67 +30,113 @@ public class TeamDaoImpl implements TeamDao{
 
 	@Override
 	public List<Team> findAll() throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Team";
-		Query<Team> query=session.createQuery(hql,Team.class);
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Team";
+		Query<Team> query = session.createQuery(hql, Team.class);
 		return query.getResultList();
-	
+
 	}
 
 	@Override
 	public Team findById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		Team team=session.get(Team.class, id);
+		Session session = sessionFactory.getCurrentSession();
+		Team team = session.get(Team.class, id);
 		return team;
 	}
 
 	@Override
 	public List<Team> findByName(String name) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Team T where T.name like :var";
-		Query<Team> query=session.createQuery(hql,Team.class);
-		query.setParameter("var", name+"%");
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Team T where T.name like :var";
+		Query<Team> query = session.createQuery(hql, Team.class);
+		query.setParameter("var", name + "%");
 		return query.getResultList();
-		
+
 	}
 
 	@Override
 	public List<Team> findByDepartmentId(Long departmentId) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Team where department_id=:var";
-		Query<Team> query=session.createQuery(hql,Team.class);
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Team where department_id=:var";
+		Query<Team> query = session.createQuery(hql, Team.class);
 		query.setParameter("var", departmentId);
 		return query.getResultList();
 	}
 
 	@Override
-	public void save(Team team) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Team save(Team team) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.save(team);
-		
+		return team;
 	}
 
 	@Override
-	public void update(Team team) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Team update(Team team) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(team);
+		return team;
 	}
 
 	@Override
 	public void delete(Team team) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(team);
-		
+
 	}
 
 	@Override
-	public int deleteById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="delete from Team T where T.id=:var";
-		Query<Team> query=session.createQuery(hql,Team.class);
-		return query.executeUpdate();
+	public void deleteById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from Team T where T.id=:var";
+		Query<Team> query = session.createQuery(hql, Team.class);
+		query.executeUpdate();
 	}
-	
-	
+
+	@Override
+	public List<Team> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<Team> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			Team tmp = session.get(Team.class, id);
+			list.add(tmp);
+		}
+		return list;
+
+	}
+
+	@Override
+	public List<Team> saveAll(List<Team> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Team tmp : entities)
+			session.save(tmp);
+		return entities;
+	}
+
+	@Override
+	public List<Team> updateAll(List<Team> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Team tmp : entities)
+			session.saveOrUpdate(tmp);
+
+		return entities;
+	}
+
+	@Override
+	public void deleteAll(List<Team> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Team tmp : entities)
+			session.delete(tmp);
+
+	}
+
+	@Override
+	public boolean existById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		Team tmp = session.get(Team.class, id);
+		if (tmp != null)
+			return true;
+		else
+			return false;
+	}
 
 }

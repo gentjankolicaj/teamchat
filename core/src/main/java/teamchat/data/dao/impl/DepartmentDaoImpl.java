@@ -1,5 +1,6 @@
 package teamchat.data.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -11,88 +12,135 @@ import org.springframework.stereotype.Repository;
 import teamchat.data.dao.DepartmentDao;
 import teamchat.data.domain.Department;
 
-
 /**
  * 
  * @author gentjan kolicaj
  *
  */
 @Repository
-public class DepartmentDaoImpl  implements DepartmentDao{
-	
+public class DepartmentDaoImpl implements DepartmentDao {
+
 	private SessionFactory sessionFactory;
-	
+
 	@Autowired
 	public DepartmentDaoImpl(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
 	public List<Department> findAll() throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Department";
-		Query<Department> query=session.createQuery(hql,Department.class);
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Department";
+		Query<Department> query = session.createQuery(hql, Department.class);
 		return query.getResultList();
-		
+
 	}
 
 	@Override
 	public Department findById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		Department department=session.get(Department.class, id);
-		return department;
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Department.class, id);
+		
 	}
 
 	@Override
 	public List<Department> findByName(String name) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Department D where D.name=:var";
-		Query<Department> query=session.createQuery(hql,Department.class);
-		query.setParameter("var",name+"%");
-		
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Department D where D.name=:var";
+		Query<Department> query = session.createQuery(hql, Department.class);
+		query.setParameter("var", name + "%");
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Department> findByCreatorId(Long creatorId) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Department where creator_id=:var";
-		Query<Department> query=session.createQuery(hql,Department.class);
-		query.setParameter("var",creatorId);
-		
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Department where creator_id=:var";
+		Query<Department> query = session.createQuery(hql, Department.class);
+		query.setParameter("var", creatorId);
+
 		return query.getResultList();
 	}
 
 	@Override
-	public void save(Department department) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Department save(Department department) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.save(department);
-		
+		return department;
+
 	}
 
 	@Override
-	public void update(Department department) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Department update(Department department) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(department);
-		
+		return department;
+
 	}
 
 	@Override
 	public void delete(Department department) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(department);
-		
+
 	}
 
 	@Override
-	public int deleteById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="delete from Department D where D.id=:var";
-		Query<Department> query=session.createQuery(hql,Department.class);
+	public void deleteById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from Department D where D.id=:var";
+		Query<Department> query = session.createQuery(hql, Department.class);
 		query.setParameter("var", id);
-		return query.executeUpdate();
+		query.executeUpdate();
 	}
-	
-	
+
+	@Override
+	public List<Department> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<Department> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			Department tmp = session.get(Department.class, id);
+			list.add(tmp);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Department> saveAll(List<Department> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Department tmp : entities) {
+			session.save(tmp);
+		}
+		return entities;
+	}
+
+	@Override
+	public List<Department> updateAll(List<Department> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Department tmp : entities) {
+			session.saveOrUpdate(tmp);
+		}
+		return entities;
+	}
+
+	@Override
+	public void deleteAll(List<Department> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Department tmp : entities) {
+			session.delete(tmp);
+		}
+
+	}
+
+	@Override
+	public boolean existById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		Department tmp = session.get(Department.class, id);
+		if (tmp != null)
+			return true;
+		else
+			return false;
+	}
 
 }

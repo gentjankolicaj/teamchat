@@ -1,5 +1,6 @@
 package teamchat.data.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import teamchat.data.dao.UserDao;
 import teamchat.data.domain.User;
 
-
 /**
  * 
  * @author gentjan kolicaj
@@ -20,95 +20,123 @@ import teamchat.data.domain.User;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
-	
-	
+
 	private SessionFactory sessionFactory;
 
-	
 	@Autowired
 	public UserDaoImpl(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+		this.sessionFactory = sessionFactory;
 	}
-	
-	
+
 	@Override
 	public List<User> findAll() throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from User order by id";
-		Query<User> query=session.createQuery(hql,User.class);
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from User order by id";
+		Query<User> query = session.createQuery(hql, User.class);
 		return query.getResultList();
 	}
 
 	@Override
 	public User findById(Long userId) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		User user=session.get(User.class, userId);
-		
+		Session session = sessionFactory.getCurrentSession();
+		User user = session.get(User.class, userId);
+
 		return user;
 	}
 
 	@Override
-	public void save(User user) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public User save(User user) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.save(user);
+		return user;
 
 	}
 
 	@Override
-	public void update(User user) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public User update(User user) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(user);
-
+		return user;
 	}
 
 	@Override
 	public void delete(User user) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(user);
 
 	}
 
 	@Override
-	public int deleteById(Long userId) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="delete from User U where U.id=:var";
-		Query<User> query=session.createQuery(hql,User.class);
+	public void deleteById(Long userId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from User U where U.id=:var";
+		Query<User> query = session.createQuery(hql, User.class);
 		query.setParameter("var", userId);
-		
-		return query.executeUpdate();
+		query.executeUpdate();
 	}
 
-
 	@Override
-	public List<User> findByUserType(Long userTypeId) throws Exception {
-		Session session= sessionFactory.getCurrentSession();
-		String hql="from User where user_type=:var";
-		Query<User> query=session.createQuery(hql,User.class);
-		query.setParameter("var", userTypeId);
-			return query.getResultList();
-	}
-
-
-	@Override
-	public List<User> findByFirstName(String firstName) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from User U where U.firstName like :var";
-		Query<User> query=session.createQuery(hql,User.class);
-		query.setParameter("var", firstName+"%");
-		return  query.getResultList();
-	}
-
-
-	@Override
-	public List<User> findByLastName(String lastName) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from User U where U.lastName like :var";
-		Query<User> query=session.createQuery(hql,User.class);
-		query.setParameter("var", lastName+"%");
-		
+	public List<User> findUsersByFirstNameLike(String firstName) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from User U where U.firstName like :var";
+		Query<User> query = session.createQuery(hql, User.class);
+		query.setParameter("var", firstName + "%");
 		return query.getResultList();
 	}
-	
-	
+
+	@Override
+	public List<User> findUsersByLastNameLike(String lastName) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from User U where U.lastName like :var";
+		Query<User> query = session.createQuery(hql, User.class);
+		query.setParameter("var", lastName + "%");
+
+		return query.getResultList();
+	}
+
+	@Override
+	public List<User> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<User> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			User tmp = session.get(User.class, id);
+			list.add(tmp);
+		}
+		return list;
+	}
+
+	@Override
+	public List<User> saveAll(List<User> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (User tmp : entities)
+			session.save(tmp);
+		return entities;
+	}
+
+	@Override
+	public List<User> updateAll(List<User> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (User tmp : entities)
+			session.saveOrUpdate(tmp);
+		return entities;
+	}
+
+	@Override
+	public void deleteAll(List<User> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (User tmp : entities)
+			session.delete(tmp);
+
+	}
+
+	@Override
+	public boolean existById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		User tmp = session.get(User.class, id);
+		if (tmp != null)
+			return true;
+		else
+			return false;
+	}
 
 }

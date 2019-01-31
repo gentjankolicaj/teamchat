@@ -1,5 +1,6 @@
 package teamchat.data.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import teamchat.data.dao.OrganizationDao;
 import teamchat.data.domain.Organization;
 
-
 /**
  * 
  * @author gentjan kolicaj
@@ -19,12 +19,10 @@ import teamchat.data.domain.Organization;
  */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
-	
-	
+
 	private SessionFactory sessionFactory;
-	
-	
-    @Autowired
+
+	@Autowired
 	public OrganizationDaoImpl(SessionFactory sessionFactory) {
 		super();
 		this.sessionFactory = sessionFactory;
@@ -32,49 +30,94 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
 	@Override
 	public List<Organization> findAll() throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="from Organization";
-		Query<Organization> query=session.createQuery(hql,Organization.class);
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Organization";
+		Query<Organization> query = session.createQuery(hql, Organization.class);
 
 		return query.getResultList();
 	}
 
 	@Override
 	public Organization findById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		Organization organization=session.get(Organization.class, id);
+		Session session = sessionFactory.getCurrentSession();
+		Organization organization = session.get(Organization.class, id);
 		return organization;
 	}
 
 	@Override
-	public void save(Organization organization) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Organization save(Organization organization) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.save(organization);
-		
+		return organization;
 	}
 
 	@Override
-	public void update(Organization organization) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+	public Organization update(Organization organization) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(organization);
-		
+		return organization;
 	}
 
 	@Override
 	public void delete(Organization organization) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.delete(organization);
-		
+
 	}
 
 	@Override
-	public int deleteById(Long id) throws Exception {
-		Session session=sessionFactory.getCurrentSession();
-		String hql="delete from Organization O where O.id=:var";
-		Query<Organization> query=session.createQuery(hql,Organization.class);
-		return query.executeUpdate();
+	public void deleteById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from Organization O where O.id=:var";
+		Query<Organization> query = session.createQuery(hql, Organization.class);
+		query.executeUpdate();
 	}
-	
-	
+
+	@Override
+	public List<Organization> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<Organization> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			Organization tmp = session.get(Organization.class, id);
+			list.add(tmp);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Organization> saveAll(List<Organization> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Organization tmp : entities)
+			session.save(tmp);
+
+		return entities;
+	}
+
+	@Override
+	public List<Organization> updateAll(List<Organization> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Organization tmp : entities)
+			session.saveOrUpdate(tmp);
+
+		return entities;
+	}
+
+	@Override
+	public void deleteAll(List<Organization> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Organization tmp : entities)
+			session.delete(tmp);
+
+	}
+
+	@Override
+	public boolean existById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		Organization tmp = session.get(Organization.class, id);
+		if (tmp != null)
+			return true;
+		else
+			return false;
+	}
 
 }

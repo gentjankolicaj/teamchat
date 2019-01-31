@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import teamchat.data.dao.AttemptDao;
-import teamchat.data.domain.Attempt;
+import teamchat.data.dao.AuthenticationAttemptDao;
+import teamchat.data.domain.AuthenticationAttempt;
 import tests.core.MyAbstractWebAppContext;
 
 @Transactional
@@ -18,7 +18,7 @@ public class AttemptDaoImplTest extends MyAbstractWebAppContext {
 
 	
 	@Autowired
-	private AttemptDao attemptDao;
+	private AuthenticationAttemptDao attemptDao;
 	
 	
 	
@@ -34,7 +34,7 @@ public class AttemptDaoImplTest extends MyAbstractWebAppContext {
 	@Test
 	public void testFindAll() throws Exception {
 		int expectedValue=0;
-		List<Attempt> attempts=attemptDao.findAll();
+		List<AuthenticationAttempt> attempts=attemptDao.findAll();
 		
 		assertEquals(expectedValue,attempts.size());
 	}
