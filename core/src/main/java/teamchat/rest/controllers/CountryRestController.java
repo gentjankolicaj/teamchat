@@ -25,7 +25,6 @@ public class CountryRestController {
 	
 	
 	
-
 	@RequestMapping(path={"/","/all","/list"},produces="application/json" )
 	public List<Country> getCountries() {
 		try {
