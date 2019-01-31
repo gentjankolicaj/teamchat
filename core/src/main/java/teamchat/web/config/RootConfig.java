@@ -18,11 +18,12 @@ public class RootConfig {
 	@PostConstruct
 	public void printBeans() {
 		String [] beanNames=context.getBeanDefinitionNames();
-		System.out.println("");
+		System.out.println();
+		System.out.println("---------------------------------After root config init --------------------------------");
 		for(String name:beanNames) {
 			System.out.println(name);
 		}
-		System.out.println("");
+		System.out.println("----------------------------"+beanNames.length+" beans found --------------------------------");
 	}
 	
 	
