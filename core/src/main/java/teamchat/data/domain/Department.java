@@ -25,6 +25,11 @@ import javax.persistence.TemporalType;
 @Table(name="department")
 public class Department implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5098269253740722343L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

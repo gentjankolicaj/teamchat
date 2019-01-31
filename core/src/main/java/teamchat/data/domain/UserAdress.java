@@ -24,6 +24,12 @@ import javax.persistence.TemporalType;
 @Table(name="user_adress")
 public class UserAdress implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3964805147362067167L;
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

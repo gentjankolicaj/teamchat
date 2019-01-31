@@ -22,6 +22,11 @@ import javax.persistence.Table;
 @Table(name="language")
 public class Language implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8519210466884197198L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

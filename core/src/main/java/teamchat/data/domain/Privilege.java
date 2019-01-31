@@ -1,5 +1,6 @@
 package teamchat.data.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,8 +19,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="privilege")
-public class Privilege {
+public class Privilege implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7114873212619445315L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

@@ -24,6 +24,11 @@ import javax.persistence.TemporalType;
 @Table(name="message")
 public class Message implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1206420511651841025L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

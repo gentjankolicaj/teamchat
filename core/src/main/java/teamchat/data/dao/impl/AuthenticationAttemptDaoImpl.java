@@ -72,7 +72,7 @@ public class AuthenticationAttemptDaoImpl implements AuthenticationAttemptDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "delete from AuthenticationAttempt A where A.id=:var"; // it is the name of the class that does the
 																			// mapping not name of table.
-		Query<AuthenticationAttempt> query = session.createQuery(hql);
+		Query<AuthenticationAttempt> query = session.createQuery(hql,AuthenticationAttempt.class);
 		query.setParameter("var", id);
 
 		query.executeUpdate();

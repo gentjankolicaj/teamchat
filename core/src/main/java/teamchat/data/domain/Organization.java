@@ -27,6 +27,11 @@ import javax.persistence.TemporalType;
 @Table(name="organization")
 public class Organization implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4715687820277496646L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

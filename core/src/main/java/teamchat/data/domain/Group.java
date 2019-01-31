@@ -1,5 +1,6 @@
 package teamchat.data.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,8 +21,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="group")
-public class Group {
+public class Group implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7503312750403163699L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

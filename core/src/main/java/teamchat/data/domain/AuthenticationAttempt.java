@@ -24,6 +24,11 @@ import javax.persistence.TemporalType;
 @Table(name="authentication_attempt")
 public class AuthenticationAttempt implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3600473251128792825L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

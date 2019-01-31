@@ -28,6 +28,11 @@ import javax.persistence.JoinColumn;
 @JsonIgnoreProperties({"userAdressList","currencies","languages"})//just for testing
 public class Country implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8846734276269089568L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

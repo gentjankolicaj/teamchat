@@ -23,6 +23,12 @@ import javax.persistence.TemporalType;
 @Table(name="credential")
 public class Credential implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6088590874742961507L;
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
