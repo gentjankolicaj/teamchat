@@ -3,7 +3,6 @@ package teamchat.web.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
-
 public class MyServletDispatcher extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -14,7 +13,7 @@ public class MyServletDispatcher extends AbstractAnnotationConfigDispatcherServl
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {WebMvcConfig.class};
+		return new Class[] {};
 	}
 
 	@Override
