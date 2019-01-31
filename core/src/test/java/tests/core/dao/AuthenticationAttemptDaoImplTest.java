@@ -14,7 +14,7 @@ import teamchat.data.domain.AuthenticationAttempt;
 import tests.core.MyAbstractWebAppContext;
 
 @Transactional
-public class AttemptDaoImplTest extends MyAbstractWebAppContext {
+public class AuthenticationAttemptDaoImplTest extends MyAbstractWebAppContext {
 
 	
 	@Autowired

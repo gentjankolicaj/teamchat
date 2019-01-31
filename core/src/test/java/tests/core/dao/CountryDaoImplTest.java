@@ -26,37 +26,30 @@ public class CountryDaoImplTest extends MyAbstractWebAppContext {
 	@Before
 	public void setUp() throws Exception {
 
-		logger.info("\n\n");
-		logger.info("---------------------------------Before Test---------------------------------");
-		logger.info("");
+		System.out.println();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		logger.info("\n\n");
-		logger.info("---------------------------------After Test---------------------------------");
-		logger.info("");
+		System.out.println();
 	}
 
 	@Test
-	@Rollback(true)
 	public void testFindAll() throws Exception {
 		List<Country> list = countryDao.findAll();
 		for (Country country : list)
-			logger.info(country.toString());
+			System.out.println(country.toString());
 
 	}
 	
 	@Test
-	@Rollback(true)
 	public void testFindById() throws Exception {
 		Country country=countryDao.findById(new Long(1));
-		logger.info(country.toString());
+		System.out.println(country.toString());
 
 	}
 	
 	@Test
-	@Rollback(true)
 	public void testSave() throws Exception {
 		Country country=new Country();
 		country.setCountryName("Test country");
@@ -67,7 +60,6 @@ public class CountryDaoImplTest extends MyAbstractWebAppContext {
 
 	}
 	@Test
-	@Rollback(true)
 	public void testUpdate() throws Exception {
 		Country country=new Country();
 		country.setCountryName("Test country");
@@ -80,7 +72,6 @@ public class CountryDaoImplTest extends MyAbstractWebAppContext {
 	}
 	
 	@Test
-	@Rollback(true)
 	public void testDelete() throws Exception {
 		
 		
@@ -88,7 +79,6 @@ public class CountryDaoImplTest extends MyAbstractWebAppContext {
 	}
 	
 	@Test
-	@Rollback(true)
 	public void testDeleteById() throws Exception {
 		countryDao.deleteById(new Long(1) );		
 
