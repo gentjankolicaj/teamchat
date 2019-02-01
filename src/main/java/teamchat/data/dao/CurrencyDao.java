@@ -13,6 +13,6 @@ import teamchat.data.domain.Currency;
  */
 public interface CurrencyDao extends CrudDao<Currency,Long>{
 	
-	public abstract List<Currency> findByName(String name) throws Exception;
+	public abstract List<Currency> findCurrencyByNameLike(String name) throws Exception;
 
 }

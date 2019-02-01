@@ -44,17 +44,17 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	@Override
-	public List<Department> findByName(String name) throws Exception {
+	public List<Department> findDepartmentByName(String name) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Department D where D.name=:var";
+		String hql = "from Department D where D.name like :var";
 		Query<Department> query = session.createQuery(hql, Department.class);
-		query.setParameter("var", name + "%");
+		query.setParameter("var", name);
 
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Department> findByCreatorId(Long creatorId) throws Exception {
+	public List<Department> findDepartmentByCreatorId(Long creatorId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Department where creator_id=:var";
 		Query<Department> query = session.createQuery(hql, Department.class);

@@ -73,7 +73,7 @@ public class CurrencyDaoImpl implements CurrencyDao {
 	}
 
 	@Override
-	public List<Currency> findByName(String name) throws Exception {
+	public List<Currency> findCurrencyByNameLike(String name) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Currency C where C.currencyName like :var";
 		Query<Currency> query = session.createQuery(hql, Currency.class);
