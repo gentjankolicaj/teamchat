@@ -75,16 +75,16 @@ public class UserContactDaoImpl implements UserContactDao {
 	}
 
 	@Override
-	public List<UserContact> findByEmail(String email) throws Exception {
+	public UserContact findUserContactByEmail(String email) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserContact U where U.email like :var";
 		Query<UserContact> query = session.createQuery(hql, UserContact.class);
-		query.setParameter("var", email + "%");
-		return query.getResultList();
+		query.setParameter("var", email);
+		return query.getSingleResult();
 	}
 
 	@Override
-	public List<UserContact> findByTelephone(Long telephone) throws Exception {
+	public List<UserContact> findUserContactByTelephone(Long telephone) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserContact U where U.telephone like :var";
 		Query<UserContact> query = session.createQuery(hql, UserContact.class);
@@ -93,7 +93,7 @@ public class UserContactDaoImpl implements UserContactDao {
 	}
 
 	@Override
-	public List<UserContact> findByMobile(Long mobile) throws Exception {
+	public List<UserContact> findUserContactByMobile(Long mobile) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserContact U where U.mobile like :var";
 		Query<UserContact> query = session.createQuery(hql, UserContact.class);
@@ -146,6 +146,15 @@ public class UserContactDaoImpl implements UserContactDao {
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public List<UserContact> findUserContactByEmailLike(String email) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from UserContact U where U.email like :var";
+		Query<UserContact> query = session.createQuery(hql, UserContact.class);
+		query.setParameter("var", email+"%");
+		return query.getResultList();
 	}
 
 }

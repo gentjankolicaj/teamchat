@@ -12,10 +12,12 @@ import teamchat.data.domain.UserContact;
  */
 public interface UserContactDao extends CrudDao<UserContact,Long>{
 
-	public abstract List<UserContact> findByEmail(String email)throws Exception;
+	public abstract UserContact findUserContactByEmail(String email)throws Exception;
 	
-	public abstract List<UserContact> findByTelephone(Long telephone)throws Exception;
+	public abstract List<UserContact> findUserContactByEmailLike(String email)throws Exception;
+	
+	public abstract List<UserContact> findUserContactByTelephone(Long telephone)throws Exception;
 
-	public abstract List<UserContact> findByMobile(Long mobile)throws Exception;
+	public abstract List<UserContact> findUserContactByMobile(Long mobile)throws Exception;
 	
 }

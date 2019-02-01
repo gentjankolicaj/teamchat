@@ -43,7 +43,7 @@ public class UserAdressDaoImpl implements UserAdressDao {
 	}
 
 	@Override
-	public List<UserAdress> findByCity(String cityName) throws Exception {
+	public List<UserAdress> findUserAdressByCityLike(String cityName) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserAdress U where U.city like :var";
 		Query<UserAdress> query = session.createQuery(hql, UserAdress.class);
@@ -52,7 +52,7 @@ public class UserAdressDaoImpl implements UserAdressDao {
 	}
 
 	@Override
-	public List<UserAdress> findByStreet(String street) throws Exception {
+	public List<UserAdress> findUserAdressByStreetLike(String street) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserAdress U where U.street like :var";
 		Query<UserAdress> query = session.createQuery(hql, UserAdress.class);
@@ -62,7 +62,7 @@ public class UserAdressDaoImpl implements UserAdressDao {
 	}
 
 	@Override
-	public List<UserAdress> findByCountryId(Long countryId) throws Exception {
+	public List<UserAdress> findUserAdressByCountryId(Long countryId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserAdress where country_id=:var";
 		Query<UserAdress> query = session.createQuery(hql, UserAdress.class);
