@@ -14,13 +14,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author gentjan kolicaj
  *
  */
 @Entity
-@Table(name="group")
+@Table(name="`group`")
+@JsonIgnoreProperties({"members","privileges"})
 public class Group implements Serializable{
 	
 	/**
@@ -30,6 +33,7 @@ public class Group implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	
 	@Column(name="name")
