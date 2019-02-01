@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import teamchat.data.domain.Industry;
-import teamchat.service.core.IndustryService;
+import teamchat.service.IndustryService;
 
 /**
  * 
@@ -15,11 +15,14 @@ import teamchat.service.core.IndustryService;
  *
  */
 @RestController
-@RequestMapping("/api/rest/industries")
+@RequestMapping(IndustryRestController.URI)
 public class IndustryRestController {
+	
+	public static final String URI="/api/industries";
 	
 	@Autowired
 	private IndustryService industryService;
+	
 	
 	@RequestMapping(path={"/","/all","/list"},produces="application/json" )
 	public List<Industry> getCountries() {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import teamchat.data.domain.User;
-import teamchat.service.core.UserService;
+import teamchat.service.UserService;
 
 
 /**
@@ -16,8 +16,10 @@ import teamchat.service.core.UserService;
  *
  */
 @RestController
-@RequestMapping("/api/rest/users")
+@RequestMapping(UserRestController.URI)
 public class UserRestController {
+	
+	public static final String URI="/api/users";
 	
 	
 	@Autowired

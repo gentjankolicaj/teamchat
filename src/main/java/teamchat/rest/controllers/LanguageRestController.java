@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/api/rest/languages")
+@RequestMapping(LanguageRestController.URI)
 public class LanguageRestController {
+	
+	public static final String URI="/api/languages";
 
 }

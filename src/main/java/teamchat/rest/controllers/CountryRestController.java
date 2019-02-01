@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import teamchat.data.domain.Country;
-import teamchat.service.core.CountryService;
+import teamchat.service.CountryService;
 
 
 /**
@@ -16,8 +16,10 @@ import teamchat.service.core.CountryService;
  *
  */
 @RestController
-@RequestMapping("/api/rest/countries")
+@RequestMapping(CountryRestController.URI)
 public class CountryRestController {
+	
+	public static final String URI="/api/countries";
 	
 
 	@Autowired
@@ -28,7 +30,7 @@ public class CountryRestController {
 	@RequestMapping(path={"/","/all","/list"},produces="application/json" )
 	public List<Country> getCountries() {
 		try {
-      	return countryService.findAll();
+      	return countryService.getAll();
 	
 		}catch(Exception ex) {
 			ex.printStackTrace();
