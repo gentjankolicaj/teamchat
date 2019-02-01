@@ -18,6 +18,8 @@ public interface UserDao extends CrudDao<User,Long> {
 	
 	public abstract List<User> findUsersByUsernameLike(String username) throws Exception;
 	
+	public abstract List<User> findUsersByUsername(String username) throws Exception;
+	
 
 	
 }

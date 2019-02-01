@@ -13,6 +13,6 @@ import teamchat.data.domain.Industry;
  */
 public interface IndustryDao extends CrudDao<Industry,Long> {
 
-	public abstract List<Industry> findByName(String name) throws Exception;
+	public abstract List<Industry> findIndustryByNameLike(String name) throws Exception;
 
 }

@@ -139,11 +139,20 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> findUsersByUsernameLike(String username) throws Exception {
+	public List<User> findUsersByUsername(String username) throws Exception {
 	    Session session=sessionFactory.getCurrentSession();
 	    String hql="from User U where U.username like :var";
 	    Query<User> query=session.createQuery(hql,User.class);
 	    query.setParameter("var", username);
+	    return query.getResultList();
+	}
+	
+	@Override
+	public List<User> findUsersByUsernameLike(String username) throws Exception {
+	    Session session=sessionFactory.getCurrentSession();
+	    String hql="from User U where U.username like :var";
+	    Query<User> query=session.createQuery(hql,User.class);
+	    query.setParameter("var", username+"%");
 	    return query.getResultList();
 	}
 
