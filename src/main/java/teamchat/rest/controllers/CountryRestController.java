@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import teamchat.data.domain.Country;
 import teamchat.service.CountryService;
 
-
 /**
  * 
  * @author gentjan kolicaj

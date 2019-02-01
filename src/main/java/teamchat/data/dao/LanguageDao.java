@@ -12,6 +12,6 @@ import teamchat.data.domain.Language;
  */
 public interface LanguageDao extends CrudDao<Language,Long> {
 	
-	public abstract List<Language> findByLang(String lang) throws Exception;
+	public abstract List<Language> findLanguageByLangLike(String lang) throws Exception;
 
 }

@@ -3,6 +3,7 @@ package teamchat.data.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="`group`")
-@JsonIgnoreProperties({"members","privileges"})
+@JsonIgnoreProperties({"members","members"})
 public class Group implements Serializable{
 	
 	/**
@@ -39,7 +40,7 @@ public class Group implements Serializable{
 	@Column(name="name")
 	private String name;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinTable(name="group_privilege",
 	joinColumns= {@JoinColumn(name="group_id")},
 	inverseJoinColumns= {@JoinColumn(name="privilege_id")})

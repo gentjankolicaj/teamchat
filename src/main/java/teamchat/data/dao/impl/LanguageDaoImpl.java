@@ -45,7 +45,7 @@ public class LanguageDaoImpl implements LanguageDao {
 	}
 
 	@Override
-	public List<Language> findByLang(String lang) throws Exception {
+	public List<Language> findLanguageByLangLike(String lang) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Language L where L.language like :var";
 		Query<Language> query = session.createQuery(hql, Language.class);
