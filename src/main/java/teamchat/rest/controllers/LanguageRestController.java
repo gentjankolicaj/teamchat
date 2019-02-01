@@ -32,7 +32,7 @@ public class LanguageRestController {
 
 		try {
 
-			languageService.getAll();
+			return languageService.getAll();
 
 		} catch (Exception e) {
 			e.printStackTrace();
