@@ -1,4 +1,4 @@
-package teamchat.rest.exception;
+package teamchat.exception;
 
 /**
  * 

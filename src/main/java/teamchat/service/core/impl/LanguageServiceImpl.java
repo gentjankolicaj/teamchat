@@ -1,4 +1,4 @@
-package teamchat.service.core;
+package teamchat.service.core.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import teamchat.data.dao.LanguageDao;
 import teamchat.data.domain.Language;
+import teamchat.service.core.LanguageService;
 
 
 /**

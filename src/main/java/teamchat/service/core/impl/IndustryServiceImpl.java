@@ -1,4 +1,4 @@
-package teamchat.service.core;
+package teamchat.service.core.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import teamchat.data.dao.IndustryDao;
 import teamchat.data.domain.Industry;
+import teamchat.service.core.IndustryService;
 
 
 /**

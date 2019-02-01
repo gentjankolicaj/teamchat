@@ -1,4 +1,4 @@
-package teamchat.service.core;
+package teamchat.service.core.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import teamchat.data.dao.UserAdressDao;
 import teamchat.data.dao.UserContactDao;
 import teamchat.data.dao.UserDao;
 import teamchat.data.domain.User;
+import teamchat.service.core.UserService;
 
 
 
