@@ -53,10 +53,6 @@ public class UserContact implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
-	@Column(name = "deletion_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date deletionDate;
-
 	@Column(name = "modification_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modificationDate;
@@ -67,7 +63,7 @@ public class UserContact implements Serializable {
 	}
 
 	public UserContact(Long id, User user, String email, Long telephone, Long mobile, String postalCode,
-			Date creationDate, Date deletionDate, Date modificationDate) {
+			Date creationDate, Date modificationDate) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -76,7 +72,6 @@ public class UserContact implements Serializable {
 		this.mobile = mobile;
 		this.postalCode = postalCode;
 		this.creationDate = creationDate;
-		this.deletionDate = deletionDate;
 		this.modificationDate = modificationDate;
 	}
 
@@ -134,14 +129,6 @@ public class UserContact implements Serializable {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public Date getDeletionDate() {
-		return deletionDate;
-	}
-
-	public void setDeletionDate(Date deletionDate) {
-		this.deletionDate = deletionDate;
 	}
 
 	public Date getModificationDate() {

@@ -56,11 +56,6 @@ public class UserAdress implements Serializable{
 	private Date creationDate;
 	
 	
-	@Column(name="deletion_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date deletionDate;
-	
-	
 	@Column(name="modification_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modificationDate;
@@ -70,8 +65,7 @@ public class UserAdress implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserAdress(Long id, User user, String city, String street, Country country, Date creationDate,
-			Date deletionDate, Date modificationDate) {
+	public UserAdress(Long id, User user, String city, String street, Country country, Date creationDate, Date modificationDate) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -79,7 +73,6 @@ public class UserAdress implements Serializable{
 		this.street = street;
 		this.country = country;
 		this.creationDate = creationDate;
-		this.deletionDate = deletionDate;
 		this.modificationDate = modificationDate;
 	}
 
@@ -129,14 +122,6 @@ public class UserAdress implements Serializable{
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public Date getDeletionDate() {
-		return deletionDate;
-	}
-
-	public void setDeletionDate(Date deletionDate) {
-		this.deletionDate = deletionDate;
 	}
 
 	public Date getModificationDate() {
