@@ -47,7 +47,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	
 		String hashedPassword=passwordService.hashPassword(password,HashFunction.SHA_256);
 		
-		List<User> users=userDao.findUsersByUsername(emailOrUsername);
+		List<User> users=userDao.findByUsername(emailOrUsername);
 		
 		for(User tmp:users) {
 			String tmpPass=tmp.getCredential().getPassword();
@@ -73,7 +73,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 
 		
-		UserContact userContact=userContactDao.findUserContactByEmail(emailOrUsername);
+		UserContact userContact=userContactDao.findByEmail(emailOrUsername);
 		if(userContact!=null) {
 			 User user=userContact.getUser();
 			String tmpPass=user.getCredential().getPassword();

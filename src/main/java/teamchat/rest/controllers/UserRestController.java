@@ -29,7 +29,7 @@ public class UserRestController {
     @RequestMapping(path={"/","/all","/list"},produces="application/json" )
 	public List<User> getUsers() {
 		try {
-	return userService.findAll();
+	return userService.getAll();
 	
 		}catch(Exception ex) {
 			ex.printStackTrace();

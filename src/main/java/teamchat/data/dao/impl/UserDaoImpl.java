@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> findUsersByFirstNameLike(String firstName) throws Exception {
+	public List<User> findByFirstNameLike(String firstName) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from User U where U.firstName like :var";
 		Query<User> query = session.createQuery(hql, User.class);
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> findUsersByLastNameLike(String lastName) throws Exception {
+	public List<User> findByLastNameLike(String lastName) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from User U where U.lastName like :var";
 		Query<User> query = session.createQuery(hql, User.class);
@@ -139,7 +139,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> findUsersByUsername(String username) throws Exception {
+	public List<User> findByUsername(String username) throws Exception {
 	    Session session=sessionFactory.getCurrentSession();
 	    String hql="from User U where U.username like :var";
 	    Query<User> query=session.createQuery(hql,User.class);
@@ -148,12 +148,30 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public List<User> findUsersByUsernameLike(String username) throws Exception {
+	public List<User> findByUsernameLike(String username) throws Exception {
 	    Session session=sessionFactory.getCurrentSession();
 	    String hql="from User U where U.username like :var";
 	    Query<User> query=session.createQuery(hql,User.class);
 	    query.setParameter("var", username+"%");
 	    return query.getResultList();
+	}
+
+	@Override
+	public List<User> findAllDeleted() throws Exception {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="from User U where U.deletionDate is not null";
+		Query<User> query=session.createQuery(hql,User.class);
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public List<User> findAllUnDeleted() throws Exception {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="from User U where U.deletionDate is null";
+		Query<User> query=session.createQuery(hql,User.class);
+		
+		return query.getResultList();
 	}
 
 }
