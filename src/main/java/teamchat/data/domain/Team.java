@@ -38,14 +38,21 @@ public class Team implements Serializable {
 	@Column(name="id")
 	private Long id;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="department_id")
+	private Department department;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="creator_id")
+	private User creator;
+	
 	
 	@Column(name="name")
 	private String name;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="department_id")
-	private Department department;
+	@Column(name="description")
+	private String description;
 	
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -56,7 +63,6 @@ public class Team implements Serializable {
 	private List<User> users;
 	
 	
-	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="team")
 	private List<Message> messages;
 	
@@ -65,9 +71,11 @@ public class Team implements Serializable {
 	private Date creationDate;
 	
 	
-	
 	@Column(name="deletion_date")
 	private Date deletionDate;
+
+	@Column(name="modification_date")
+	private Date modificationDate;
 
 
 	public Team() {
@@ -76,16 +84,19 @@ public class Team implements Serializable {
 	}
 
 
-	public Team(Long id, String name, Department department, List<User> users, List<Message> messages,
-			Date creationDate, Date deletionDate) {
+	public Team(Long id, Department department, User creator, String name, String description, List<User> users,
+			List<Message> messages, Date creationDate, Date deletionDate, Date modificationDate) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.department = department;
+		this.creator = creator;
+		this.name = name;
+		this.description = description;
 		this.users = users;
 		this.messages = messages;
 		this.creationDate = creationDate;
 		this.deletionDate = deletionDate;
+		this.modificationDate = modificationDate;
 	}
 
 
@@ -99,6 +110,26 @@ public class Team implements Serializable {
 	}
 
 
+	public Department getDepartment() {
+		return department;
+	}
+
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+
+	public User getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -109,13 +140,13 @@ public class Team implements Serializable {
 	}
 
 
-	public Department getDepartment() {
-		return department;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -157,7 +188,18 @@ public class Team implements Serializable {
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
-	
+
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+
+
 }
 	
 	

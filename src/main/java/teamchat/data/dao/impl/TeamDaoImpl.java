@@ -45,7 +45,7 @@ public class TeamDaoImpl implements TeamDao {
 	}
 
 	@Override
-	public List<Team> findByName(String name) throws Exception {
+	public List<Team> findByNameLike(String name) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Team T where T.name like :var";
 		Query<Team> query = session.createQuery(hql, Team.class);

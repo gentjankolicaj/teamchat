@@ -1,6 +1,7 @@
 package teamchat.data.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -66,98 +67,7 @@ public class MessageDaoImpl implements MessageDao {
 		session.delete(message);
 
 	}
-
-	@Override
-	public void deleteById(Long id) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "delete from Message M where M.id=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", id);
-		query.executeUpdate();
-	}
-
-	@Override
-	public List<Message> findBySenderId(Long senderId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Message M where M.sender=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", senderId);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Message> findByReceiverId(Long receiverId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Message M where M.receiver=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", receiverId);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Message> findByTeamId(Long teamId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Message M where M.team_id=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", teamId);
-		return query.getResultList();
-	}
-
-	@Override
-	public int deleteBySenderId(Long senderId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "delete from Message M where  M.sender=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", senderId);
-
-		return query.executeUpdate();
-	}
-
-	@Override
-	public int deleteByReceiverId(Long receiverId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "delete from Message M where M.receiver=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", receiverId);
-		return query.executeUpdate();
-	}
-
-	@Override
-	public int deleteByTeamId(Long teamId) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "delete from Message where M.team_id=:var";
-		Query<Message> query = session.createQuery(hql, Message.class);
-		query.setParameter("var", teamId);
-		return query.executeUpdate();
-	}
-
-	@Override
-	public List<Message> findAllById(List<Long> ids) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		List<Message> list = new ArrayList<>(ids.size());
-		for (Long id : ids) {
-			Message tmp = session.get(Message.class, id);
-			list.add(tmp);
-		}
-		return list;
-	}
-
-	@Override
-	public List<Message> saveAll(List<Message> entities) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		for (Message tmp : entities)
-			session.save(tmp);
-		return entities;
-	}
-
-	@Override
-	public List<Message> updateAll(List<Message> entities) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		for (Message tmp : entities)
-			session.saveOrUpdate(tmp);
-		return entities;
-	}
-
+	
 	@Override
 	public void deleteAll(List<Message> entities) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
@@ -175,5 +85,121 @@ public class MessageDaoImpl implements MessageDao {
 		else
 			return false;
 	}
+	
+	@Override
+	public List<Message> saveAll(List<Message> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Message tmp : entities)
+			session.save(tmp);
+		return entities;
+	}
 
+	@Override
+	public List<Message> updateAll(List<Message> entities) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		for (Message tmp : entities)
+			session.saveOrUpdate(tmp);
+		return entities;
+	}
+
+	@Override
+	public List<Message> findAllById(List<Long> ids) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List<Message> list = new ArrayList<>(ids.size());
+		for (Long id : ids) {
+			Message tmp = session.get(Message.class, id);
+			list.add(tmp);
+		}
+		return list;
+	}
+	
+	@Override
+	public void deleteById(Long id) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from Message M where M.id=:var";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("var", id);
+		query.executeUpdate();
+	}
+	
+	//==================================================================================
+
+
+	@Override
+	public List<Message> customFindBySenderId(Long senderId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Message M where M.sender=:var and M.deletionDate is not null";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("var", senderId);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Message> customFindByReceiverId(Long receiverId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Message M where M.receiver=:var and M.deletionDate is not null";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("var", receiverId);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Message> customFindByTeamId(Long teamId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Message M where M.team=:var and M.deletionDate is not null";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("var", teamId);
+		return query.getResultList();
+	}
+
+	@Override
+	public int customDeleteBySenderId(Long senderId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "update Message M set M.deletionDate=:date where M.sender=:senderId";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("date", new Date());
+		query.setParameter("senderId", senderId);
+
+		return query.executeUpdate();
+	}
+
+	@Override
+	public int customDeleteByReceiverId(Long receiverId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "update Message M set M.deletionDate=:date where M.receiver=:receiverId";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("date",new Date());
+		query.setParameter("receiverId", receiverId);
+		
+		return query.executeUpdate();
+	}
+
+	@Override
+	public int customDeleteByTeamId(Long teamId) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "update Message M set M.deletionDate=:date where M.team=:teamId";
+		Query<Message> query = session.createQuery(hql, Message.class);
+		query.setParameter("date", new Date());
+		query.setParameter("teamId", teamId);
+		
+		return query.executeUpdate();
+	}
+
+	@Override
+	public List<Message> customFindAllDeleted() throws Exception {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="from Message where M.deletionDate is null";
+		Query<Message> query=session.createQuery(hql,Message.class);
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Message> customFindAllUnDeleted() throws Exception {
+		Session session=sessionFactory.getCurrentSession();
+		String hql="from Message where M.deletionDate is not null";
+		Query<Message> query=session.createQuery(hql,Message.class);
+		
+		return query.getResultList();
+	}
 }

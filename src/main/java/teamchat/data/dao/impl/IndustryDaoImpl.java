@@ -43,7 +43,7 @@ public class IndustryDaoImpl implements IndustryDao {
 	}
 
 	@Override
-	public List<Industry> findIndustryByNameLike(String name) throws Exception {
+	public List<Industry> findByNameLike(String name) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Industry I where I.name like :var";
 		Query<Industry> query = session.createQuery(hql, Industry.class);

@@ -13,8 +13,8 @@ import teamchat.data.domain.Team;
  */
 public interface TeamDao extends CrudDao<Team,Long> {
 	
-		public abstract List<Team> findByName(String name) throws Exception;
+	public abstract List<Team> findByNameLike(String name) throws Exception;
 		
-		public abstract List<Team> findByDepartmentId(Long departmentId) throws Exception;
+	public abstract List<Team> findByDepartmentId(Long departmentId) throws Exception;
 		
 }

@@ -29,37 +29,37 @@ public class IndustryServiceImpl implements IndustryService{
 	}
 
 	@Override
-	public List<Industry> findAll() throws Exception {
+	public List<Industry> getAll() throws Exception {
 		return industryDao.findAll();
 	}
 
 	@Override
-	public List<Industry> findAllById(List<Long> ids) throws Exception {
+	public List<Industry> getAllById(List<Long> ids) throws Exception {
 	  return industryDao.findAllById(ids);
 	}
 
 	@Override
-	public Industry findById(Long id) throws Exception {
+	public Industry getById(Long id) throws Exception {
 		return industryDao.findById(id);
 	}
 
 	@Override
-	public Industry save(Industry entity) throws Exception {
+	public Industry create(Industry entity) throws Exception {
 		return industryDao.save(entity);
 	}
 
 	@Override
-	public List<Industry> saveAll(List<Industry> entities) throws Exception {
+	public List<Industry> createAll(List<Industry> entities) throws Exception {
 		return industryDao.saveAll(entities);
 	}
 
 	@Override
-	public Industry update(Industry entity) throws Exception {
+	public Industry edit(Industry entity) throws Exception {
 		return industryDao.update(entity);
 	}
 
 	@Override
-	public List<Industry> updateAll(List<Industry> entities) throws Exception {
+	public List<Industry> editAll(List<Industry> entities) throws Exception {
 		return industryDao.updateAll(entities);
 	}
 
@@ -87,8 +87,8 @@ public class IndustryServiceImpl implements IndustryService{
 	}
 
 	@Override
-	public List<Industry> findIndustryByNameLike(String name) throws Exception {
-		return industryDao.findIndustryByNameLike(name);
+	public List<Industry> getIndustryByNameLike(String name) throws Exception {
+		return industryDao.findByNameLike(name);
 	}
 
 	

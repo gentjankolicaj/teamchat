@@ -27,7 +27,7 @@ public class IndustryRestController {
 	@RequestMapping(path={"/","/all","/list"},produces="application/json" )
 	public List<Industry> getCountries() {
 		try {
-      	return industryService.findAll();
+      	return industryService.getAll();
 	
 		}catch(Exception ex) {
 			ex.printStackTrace();

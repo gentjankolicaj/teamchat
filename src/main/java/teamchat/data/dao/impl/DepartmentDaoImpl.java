@@ -44,7 +44,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	@Override
-	public List<Department> findDepartmentByName(String name) throws Exception {
+	public List<Department> findByName(String name) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Department D where D.name like :var";
 		Query<Department> query = session.createQuery(hql, Department.class);
@@ -54,7 +54,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	@Override
-	public List<Department> findDepartmentByCreatorId(Long creatorId) throws Exception {
+	public List<Department> findByCreatorId(Long creatorId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Department where creator_id=:var";
 		Query<Department> query = session.createQuery(hql, Department.class);

@@ -90,12 +90,12 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public List<Department> getDepartmentByName(String name) throws Exception {
-		return departmentDao.findDepartmentByName(name);
+		return departmentDao.findByName(name);
 	}
 
 	@Override
 	public List<Department> getDepartmentByCreatorId(Long creatorId) throws Exception {
-		return departmentDao.findDepartmentByCreatorId(creatorId);
+		return departmentDao.findByCreatorId(creatorId);
 	}
 
 	@Override

@@ -86,8 +86,8 @@ public class LanguageServiceImpl implements LanguageService {
 	}
 
 	@Override
-	public List<Language> getLanguageByLangLike(String lang) throws Exception {
-		return languageDao.findLanguageByLangLike(lang);
+	public List<Language> getByLangLike(String lang) throws Exception {
+		return languageDao.findByLangLike(lang);
 	}
 
 

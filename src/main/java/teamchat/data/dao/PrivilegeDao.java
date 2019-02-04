@@ -11,6 +11,6 @@ import teamchat.data.domain.Privilege;
  */
 public interface PrivilegeDao extends CrudDao<Privilege,Long>{
 
-	public abstract List<Privilege> findPrivilegesByIdentifierLike(String identifier) throws Exception;
+	public abstract List<Privilege> findByIdentifierLike(String identifier) throws Exception;
 
 }

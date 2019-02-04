@@ -11,6 +11,6 @@ import teamchat.data.domain.Group;
  */
 public interface GroupDao extends CrudDao<Group,Long>{
 	
-	public abstract List<Group> findGroupsByNameLike(String name) throws Exception;
+	public abstract List<Group> findByNameLike(String name) throws Exception;
 
 }

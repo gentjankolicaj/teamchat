@@ -12,16 +12,21 @@ import teamchat.data.domain.Message;
  */
 public interface MessageDao extends CrudDao<Message,Long> {
 
-	public abstract List<Message> findBySenderId(Long senderId) throws Exception ;
 	
-	public abstract List<Message> findByReceiverId(Long receiverId) throws Exception ;
+	public abstract List<Message> customFindAllDeleted() throws Exception ;
 	
-	public abstract List<Message> findByTeamId(Long teamId) throws Exception ;
+	public abstract List<Message> customFindAllUnDeleted() throws Exception ;
 	
-	public abstract int deleteBySenderId(Long senderId) throws Exception;
+	public abstract List<Message> customFindBySenderId(Long senderId) throws Exception ;
 	
-	public abstract int deleteByReceiverId(Long receiverId) throws Exception;
+	public abstract List<Message> customFindByReceiverId(Long receiverId) throws Exception ;
 	
-	public abstract int deleteByTeamId(Long teamId) throws Exception;
+	public abstract List<Message> customFindByTeamId(Long teamId) throws Exception ;
+	
+	public abstract int customDeleteBySenderId(Long senderId) throws Exception;
+	
+	public abstract int customDeleteByReceiverId(Long receiverId) throws Exception;
+	
+	public abstract int customDeleteByTeamId(Long teamId) throws Exception;
 	
 }

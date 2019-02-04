@@ -27,7 +27,7 @@ public interface LanguageService {
 	
 	public abstract boolean existById(Long id) throws Exception;
 	
-	public abstract List<Language> getLanguageByLangLike(String lang) throws Exception;
+	public abstract List<Language> getByLangLike(String lang) throws Exception;
 
 
 }

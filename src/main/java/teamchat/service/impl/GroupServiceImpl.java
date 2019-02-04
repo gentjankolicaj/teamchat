@@ -90,8 +90,8 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public List<Group> findGroupsByNameLike(String name) throws Exception {
-		return groupDao.findGroupsByNameLike(name);
+	public List<Group> getByNameLike(String name) throws Exception {
+		return groupDao.findByNameLike(name);
 	}
 
 	@Override

@@ -119,7 +119,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
 	}
 
 	@Override
-	public List<Privilege> findPrivilegesByIdentifierLike(String identifier) throws Exception {
+	public List<Privilege> findByIdentifierLike(String identifier) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Privilege P where P.identifier like :var";
 		Query<Privilege> query = session.createQuery(hql, Privilege.class);

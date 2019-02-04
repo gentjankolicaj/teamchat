@@ -86,7 +86,7 @@ public class CurrencyServiceImpl implements CurrencyService{
 
 	@Override
 	public List<Currency> getCurrencyByNameLike(String name) throws Exception {
-		return currencyDao.findCurrencyByNameLike(name);
+		return currencyDao.findByNameLike(name);
 	}
 
 }

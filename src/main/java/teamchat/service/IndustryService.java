@@ -12,15 +12,15 @@ import teamchat.data.domain.Industry;
  */
 public interface IndustryService {
 	
-	public abstract List<Industry> findAll() throws Exception;
-	public abstract List<Industry> findAllById(List<Long> ids)  throws Exception;
-	public abstract Industry findById(Long id) throws Exception;
+	public abstract List<Industry> getAll() throws Exception;
+	public abstract List<Industry> getAllById(List<Long> ids)  throws Exception;
+	public abstract Industry getById(Long id) throws Exception;
 	
-	public abstract Industry save(Industry entity) throws Exception;
-	public abstract List<Industry> saveAll(List<Industry> entities) throws Exception;
+	public abstract Industry create(Industry entity) throws Exception;
+	public abstract List<Industry> createAll(List<Industry> entities) throws Exception;
 	
-	public abstract Industry update(Industry entity) throws Exception;
-	public abstract List<Industry> updateAll(List<Industry> entities) throws Exception;
+	public abstract Industry edit(Industry entity) throws Exception;
+	public abstract List<Industry> editAll(List<Industry> entities) throws Exception;
 	
 	public abstract void deleteById(Long id) throws Exception;
 	public abstract void delete(Industry entity) throws Exception;
@@ -29,6 +29,6 @@ public interface IndustryService {
 	public abstract boolean existById(Long id) throws Exception;
 	
 	//=================================
-	public abstract List<Industry> findIndustryByNameLike(String name) throws Exception;
+	public abstract List<Industry> getIndustryByNameLike(String name) throws Exception;
 
 }

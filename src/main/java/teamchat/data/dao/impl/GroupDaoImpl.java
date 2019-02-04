@@ -118,7 +118,7 @@ public class GroupDaoImpl implements GroupDao {
 	}
 
 	@Override
-	public List<Group> findGroupsByNameLike(String name) throws Exception {
+	public List<Group> findByNameLike(String name) throws Exception {
 		Session session=sessionFactory.getCurrentSession();
 		String hql="from Group G where G.name like :var";
 		Query<Group> query=session.createQuery(hql,Group.class);

@@ -27,7 +27,7 @@ public interface GroupService {
 	public abstract void deleteAll(List<Group> entities) throws Exception;
 	
 	public abstract boolean existById(Long id) throws Exception;
-	public abstract List<Group> findGroupsByNameLike(String name) throws Exception;
+	public abstract List<Group> getByNameLike(String name) throws Exception;
 	
 	//======================
 	public abstract Group addUser(Group group,User user) throws Exception;

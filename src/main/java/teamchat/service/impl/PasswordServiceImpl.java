@@ -16,7 +16,6 @@ import teamchat.service.PasswordService;
 @Service
 public class PasswordServiceImpl implements PasswordService {
 	
-	
 
 	public PasswordServiceImpl() {
 		super();
