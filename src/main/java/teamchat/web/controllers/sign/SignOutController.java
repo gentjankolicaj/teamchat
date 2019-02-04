@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/signout")
+@RequestMapping(SignOutController.URI)
 public class SignOutController {
+	
+	protected final static String URI="/signup";
 
 }

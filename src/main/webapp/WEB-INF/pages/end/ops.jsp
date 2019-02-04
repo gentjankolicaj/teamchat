@@ -1,12 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-
 <html>
-
+<head>
+<title>Ops page</title>
+</head>
   <body>
-    <img src="${pageContext.request.contextPath}/resources/static/images/pets.png"/>
-    <h2>Something happened...</h2>
-    <p > Exception message</p>
-  </body>
+  
+    <h2>Ops,something happened unpredicted happened...</h2>
+    <p>Please notify developer !!!</p>
+ </body>
 
 </html>

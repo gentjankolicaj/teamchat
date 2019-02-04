@@ -6,13 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping(HomeController.URI)
 public class HomeController {
 	
+	protected final static String URI="/home";
 	
-	@RequestMapping({"","/**"})
+	
+	public HomeController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	@RequestMapping
 	public String showHome() {
-		
 		return "home";
 	}
 	
