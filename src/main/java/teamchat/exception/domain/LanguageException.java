@@ -1,4 +1,4 @@
-package teamchat.exception;
+package teamchat.exception.domain;
 
 /**
  * 
