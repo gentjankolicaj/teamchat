@@ -30,6 +30,7 @@ public interface CredentialService {
 	
 	
 	//==============================================================
+	public abstract Credential getByUserId(Long userId) throws Exception;
 	public abstract Credential changePassword(User user,String newPassword) throws Exception;
 
 }

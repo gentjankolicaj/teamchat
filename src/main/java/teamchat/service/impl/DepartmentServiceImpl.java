@@ -11,7 +11,7 @@ import teamchat.data.dao.DepartmentDao;
 import teamchat.data.domain.Department;
 import teamchat.data.domain.Organization;
 import teamchat.data.domain.User;
-import teamchat.exception.DepartmentException;
+import teamchat.exception.domain.DepartmentException;
 import teamchat.service.DepartmentService;
 
 /**

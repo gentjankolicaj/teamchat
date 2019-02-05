@@ -96,6 +96,11 @@ public class CredentialServiceImpl implements CredentialService {
 		credential.setPassword(hashedNewPassword);
 		return credentialDao.update(credential);
 	}
+
+	@Override
+	public Credential getByUserId(Long userId) throws Exception {
+		return credentialDao.findByUserId(userId);
+	}
 	
 	
 

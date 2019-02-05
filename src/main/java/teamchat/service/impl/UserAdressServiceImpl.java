@@ -11,8 +11,8 @@ import teamchat.data.dao.UserAdressDao;
 import teamchat.data.domain.Country;
 import teamchat.data.domain.User;
 import teamchat.data.domain.UserAdress;
-import teamchat.exception.UserAdressException;
-import teamchat.exception.UserException;
+import teamchat.exception.domain.UserAdressException;
+import teamchat.exception.domain.UserException;
 import teamchat.service.UserAdressService;
 
 /**

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import teamchat.data.dao.GroupDao;
 import teamchat.data.domain.Group;
 import teamchat.data.domain.User;
-import teamchat.exception.GroupException;
+import teamchat.exception.domain.GroupException;
 import teamchat.service.GroupService;
 
 /**

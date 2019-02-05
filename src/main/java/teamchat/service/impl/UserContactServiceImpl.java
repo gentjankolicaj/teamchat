@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import teamchat.data.dao.UserContactDao;
 import teamchat.data.domain.User;
 import teamchat.data.domain.UserContact;
-import teamchat.exception.UserContactException;
-import teamchat.exception.UserException;
+import teamchat.exception.domain.UserContactException;
+import teamchat.exception.domain.UserException;
 import teamchat.service.UserContactService;
 
 /**

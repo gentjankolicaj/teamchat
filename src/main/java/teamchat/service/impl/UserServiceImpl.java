@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import teamchat.data.dao.UserDao;
 import teamchat.data.domain.Sex;
 import teamchat.data.domain.User;
-import teamchat.exception.UserException;
+import teamchat.exception.domain.UserException;
 import teamchat.service.UserService;
 
 /**
