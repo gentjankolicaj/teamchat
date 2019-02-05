@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import teamchat.data.domain.Group;
+import teamchat.data.domain.Currency;
 import teamchat.exception.request.IdException;
 import teamchat.exception.request.NullReferenceException;
-import teamchat.service.GroupService;
+import teamchat.service.CurrencyService;
 
 /**
  * 
@@ -27,86 +27,81 @@ import teamchat.service.GroupService;
  *
  */
 @Controller
-@RequestMapping(GroupRestController.URI)
-class GroupRestController {
-
-	protected static final String URI = "/api/groups";
-
-	private GroupService groupService;
+@RequestMapping(CurrencyRestController.URI)
+class CurrencyRestController {
 	
-	@Autowired
-	public GroupRestController(GroupService groupService) {
-		super();
-		this.groupService = groupService;
-	}
+	protected final static String URI="/api/currency";
+	
+	private CurrencyService currencyService;
 
+	@Autowired
+	public CurrencyRestController(CurrencyService currencyService) {
+		super();
+		this.currencyService = currencyService;
+	}
 	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "", "/", "/all", "/list" }, method = RequestMethod.GET, produces = "application/json")
-	public List<Group> getAllGroups() throws Exception {
-		return groupService.getAll();
+	public List<Currency> getAllCurrencies() throws Exception {
+		return currencyService.getAll();
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.GET, produces = "application/json")
-	public Group getGroupById(@PathVariable("id") String id) throws Exception {
+	public Currency getCurrencyById(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			return groupService.getById(groupId);
+			Long currencyId = Long.parseLong(id);
+			return currencyService.getById(currencyId);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Currency id " + id + " is not parsable.Must be an integer.");
 	}
 
 	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public List<Group> getGroupsByNameLike(@RequestParam("name") String name) throws Exception { // /api/groups?name=groupName
-		return groupService.getByNameLike(name);
+	public List<Currency> getCurrencyByNameLike(@RequestParam("name") String name) throws Exception { // /api/credentials?userId=example
+	
+	    return currencyService.getCurrencyByNameLike(name);
 	}
 
 	
-
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public Group saveDepartment(@RequestBody Group group) throws Exception {
-		if (group == null)
-			throw new NullReferenceException("Group reference binded is null.");
+	public Currency saveCurrency(@RequestBody Currency currency) throws Exception {
+		if (currency == null)
+			throw new NullReferenceException("Currency reference binded is null.");
 
-		return groupService.create(group);
+		return currencyService.create(currency);
 	}
-
 	
+
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.PUT, produces = "application/json")
-	public Group editGroup(@PathVariable("id") String id, @RequestBody Group group)
-			throws Exception {
+	public Currency editCurrency(@PathVariable("id") String id, @RequestBody Currency currency)	throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			if (group == null)
-				throw new NullReferenceException("Group reference binded is null.");
-			group.setId(groupId);
-
-			return groupService.edit(group);
+			Long currencyId = Long.parseLong(id);
+			if (currency == null)
+				throw new NullReferenceException("Currency reference binded is null.");
+			currency.setId(currencyId);
+			return currencyService.edit(currency);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Currency id " + id + " is not parsable.Must be an integer.");
 	}
 
-	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.DELETE, produces = "application/json")
-	public void deleteGroup(@PathVariable("id") String id) throws Exception {
+	public void deleteCurrency(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			groupService.deleteById(groupId);
+			Long credentialId = Long.parseLong(id);
+			currencyService.deleteById(credentialId);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Currency id " + id + " is not parsable.Must be an integer.");
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -114,5 +109,7 @@ class GroupRestController {
 	public ResponseEntity<Object> unMappedRequests() throws Exception {
 		return new ResponseEntity<>("Wrong URI or request method.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
+	
+	
 
 }

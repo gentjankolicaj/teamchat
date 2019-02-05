@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import teamchat.data.domain.Group;
+import teamchat.data.domain.Credential;
 import teamchat.exception.request.IdException;
 import teamchat.exception.request.NullReferenceException;
-import teamchat.service.GroupService;
+import teamchat.service.CredentialService;
 
 /**
  * 
@@ -27,86 +27,83 @@ import teamchat.service.GroupService;
  *
  */
 @Controller
-@RequestMapping(GroupRestController.URI)
-class GroupRestController {
+@RequestMapping(CredentialRestController.URI)
+class CredentialRestController {
 
-	protected static final String URI = "/api/groups";
+	protected static final String URI = "/api/credentials";
 
-	private GroupService groupService;
-	
+	private CredentialService credentialService;
+
 	@Autowired
-	public GroupRestController(GroupService groupService) {
+	public CredentialRestController(CredentialService credentialService) {
 		super();
-		this.groupService = groupService;
+		this.credentialService = credentialService;
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "", "/", "/all", "/list" }, method = RequestMethod.GET, produces = "application/json")
-	public List<Group> getAllGroups() throws Exception {
-		return groupService.getAll();
+	public List<Credential> getAllCredentials() throws Exception {
+		return credentialService.getAll();
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.GET, produces = "application/json")
-	public Group getGroupById(@PathVariable("id") String id) throws Exception {
+	public Credential getCredentialById(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			return groupService.getById(groupId);
+			Long credentialId = Long.parseLong(id);
+			return credentialService.getById(credentialId);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Credential id " + id + " is not parsable.Must be an integer.");
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public List<Group> getGroupsByNameLike(@RequestParam("name") String name) throws Exception { // /api/groups?name=groupName
-		return groupService.getByNameLike(name);
-	}
+	public Credential getCredentialByUserId(@RequestParam("userId") String userId) throws Exception { // /api/credentials?userId=example
+		if (NumberUtils.isParsable(userId)) {
+			Long userID = Long.parseLong(userId);
+			return credentialService.getByUserId(userID);
+		} else
+			throw new IdException("User id " + userId + " is not parsable.Must be an integer.");
 
-	
+	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public Group saveDepartment(@RequestBody Group group) throws Exception {
-		if (group == null)
-			throw new NullReferenceException("Group reference binded is null.");
+	public Credential saveCredential(@RequestBody Credential credential) throws Exception {
+		if (credential == null)
+			throw new NullReferenceException("Credential reference binded is null.");
 
-		return groupService.create(group);
+		return credentialService.create(credential);
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.PUT, produces = "application/json")
-	public Group editGroup(@PathVariable("id") String id, @RequestBody Group group)
+	public Credential editCredential(@PathVariable("id") String id, @RequestBody Credential credential)
 			throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			if (group == null)
-				throw new NullReferenceException("Group reference binded is null.");
-			group.setId(groupId);
-
-			return groupService.edit(group);
+			Long credentialId = Long.parseLong(id);
+			if (credential == null)
+				throw new NullReferenceException("Credential reference binded is null.");
+			credential.setId(credentialId);
+			return credentialService.edit(credential);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Credential id " + id + " is not parsable.Must be an integer.");
 	}
 
-	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.DELETE, produces = "application/json")
-	public void deleteGroup(@PathVariable("id") String id) throws Exception {
+	public void deleteCredential(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long groupId = Long.parseLong(id);
-			groupService.deleteById(groupId);
+			Long credentialId = Long.parseLong(id);
+			credentialService.deleteById(credentialId);
 		} else
-			throw new IdException("Group id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Credential id" + id + " is not parsable.Must be an integer.");
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
