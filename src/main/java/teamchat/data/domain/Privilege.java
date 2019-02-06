@@ -38,7 +38,7 @@ public class Privilege implements Serializable{
 	private String description;
 	
 	
-	@ManyToMany(fetch=FetchType.LAZY,mappedBy="privileges")
+	@ManyToMany(fetch=FetchType.EAGER,mappedBy="privileges")
 	private List<Group> groups;
 
 

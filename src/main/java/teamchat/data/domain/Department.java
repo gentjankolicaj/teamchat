@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author gentjan kolicaj
@@ -35,7 +37,7 @@ public class Department implements Serializable {
 	@Column(name="id")
 	private Long id;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="organization_id")
 	private Organization organization;
 	
@@ -50,15 +52,15 @@ public class Department implements Serializable {
 	private String description;
 	
 	@Column(name="creation_date")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date creationDate;
 	
 	@Column(name="deletion_date")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date deletionDate;
 	
 	@Column(name="modification_date")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date modificationDate;
 	
 	

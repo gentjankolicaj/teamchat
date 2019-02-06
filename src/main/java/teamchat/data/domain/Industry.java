@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author gentjan kolicaj
@@ -19,6 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="industry")
+@JsonIgnoreProperties({"organizations"})
 public class Industry implements Serializable {
 	
 	/**
@@ -42,7 +45,7 @@ public class Industry implements Serializable {
 
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="industry")
-	private List<Organization> organization;
+	private List<Organization> organizations;
 
 
 	public Industry() {
@@ -51,12 +54,12 @@ public class Industry implements Serializable {
 	}
 
 
-	public Industry(Long id, String name, String description, List<Organization> organization) {
+	public Industry(Long id, String name, String description, List<Organization> organizations) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.organization = organization;
+		this.organizations = organizations;
 	}
 
 
@@ -90,14 +93,16 @@ public class Industry implements Serializable {
 	}
 
 
-	public List<Organization> getOrganization() {
-		return organization;
+	public List<Organization> getOrganizations() {
+		return organizations;
 	}
 
 
-	public void setOrganization(List<Organization> organization) {
-		this.organization = organization;
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
 	}
 
+
+	
 
 }

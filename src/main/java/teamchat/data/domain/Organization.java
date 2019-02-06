@@ -46,7 +46,7 @@ public class Organization implements Serializable {
 	private User creator;
 	
 	@Column(name="name")
-	private String  name;
+	private String name;
 	
 	@Column(name="city")
 	private String city;
@@ -74,14 +74,14 @@ public class Organization implements Serializable {
 	private List<Department> departments;
 	
 	@Column(name="creation_date")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date creationDate;
 	
 	@Column(name="deletion_date")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	private Date deletionDate;
 
-
+	
 	public Organization() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -247,6 +247,8 @@ public class Organization implements Serializable {
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
+
+	
 
 	
 }

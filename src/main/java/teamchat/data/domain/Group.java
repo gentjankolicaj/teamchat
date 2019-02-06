@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="`group`")
-@JsonIgnoreProperties({"members","members"})
+@JsonIgnoreProperties({"privileges","members"})
 public class Group implements Serializable{
 	
 	/**
