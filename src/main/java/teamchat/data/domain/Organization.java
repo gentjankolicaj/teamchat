@@ -74,11 +74,11 @@ public class Organization implements Serializable {
 	private List<Department> departments;
 	
 	@Column(name="creation_date")
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
 	@Column(name="deletion_date")
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date deletionDate;
 
 	

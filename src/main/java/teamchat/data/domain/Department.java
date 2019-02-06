@@ -52,15 +52,15 @@ public class Department implements Serializable {
 	private String description;
 	
 	@Column(name="creation_date")
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
 	@Column(name="deletion_date")
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date deletionDate;
 	
 	@Column(name="modification_date")
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date modificationDate;
 	
 	

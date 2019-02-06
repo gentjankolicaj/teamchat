@@ -72,11 +72,11 @@ public class User implements Serializable {
 	private Credential credential;
 	
 	
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="user")
+	@OneToOne(fetch=FetchType.EAGER,mappedBy="user")
 	private UserAdress userAdress;
 	
 	
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="user")
+	@OneToOne(fetch=FetchType.EAGER,mappedBy="user")
 	private UserContact userContact;
 	
 	
