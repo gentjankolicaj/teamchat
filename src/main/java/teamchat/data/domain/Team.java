@@ -25,8 +25,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="team")
 public class Team implements Serializable {
-
-	
 	/**
 	 * 
 	 */
@@ -77,12 +75,10 @@ public class Team implements Serializable {
 	@Column(name="modification_date")
 	private Date modificationDate;
 
-
 	public Team() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Team(Long id, Department department, User creator, String name, String description, List<User> users,
 			List<Message> messages, Date creationDate, Date deletionDate, Date modificationDate) {
@@ -99,106 +95,88 @@ public class Team implements Serializable {
 		this.modificationDate = modificationDate;
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public Department getDepartment() {
 		return department;
 	}
-
 
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
 
-
 	public User getCreator() {
 		return creator;
 	}
-
 
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public List<User> getUsers() {
 		return users;
 	}
-
 
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
-
 	public List<Message> getMessages() {
 		return messages;
 	}
-
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
-
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
-
 	public Date getDeletionDate() {
 		return deletionDate;
 	}
-
 
 	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
 
-
 	public Date getModificationDate() {
 		return modificationDate;
 	}
-
 
 	public void setModificationDate(Date modificationDate) {
 		this.modificationDate = modificationDate;
 	}
 
+
+	
 
 }
 	

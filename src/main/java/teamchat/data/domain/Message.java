@@ -68,7 +68,7 @@ public class Message implements Serializable {
 	@Column(name="modified_by")
 	private Long modifiedBy;
 
-
+	
 	public Message() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -179,6 +179,8 @@ public class Message implements Serializable {
 		this.modifiedBy = modifiedBy;
 	}
 
+
+	
 
 	
 }
