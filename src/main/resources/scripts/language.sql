@@ -55,6 +55,7 @@ INSERT INTO language(language) VALUES ('Dutch');
 INSERT INTO language(language) VALUES ('Dzongkha');
 INSERT INTO language(language) VALUES ('Edo');
 INSERT INTO language(language) VALUES ('Ekegusii');
+INSERT INTO language(language) VALUES ('English');
 INSERT INTO language(language) VALUES ('Estonian');
 INSERT INTO language(language) VALUES ('Ewe');
 INSERT INTO language(language) VALUES ('Farsi');

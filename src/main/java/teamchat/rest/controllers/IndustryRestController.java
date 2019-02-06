@@ -63,14 +63,14 @@ class IndustryRestController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(params= {"name"},method = RequestMethod.GET, produces = "application/json")
 	public List<Industry> getIndustryByNameLike(@RequestParam("name") String name) throws Exception { // /api/industries?name=industryName
 		return industryService.getIndustryByNameLike(name);
 	}
 
 	
 
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public Industry saveIndustry(@RequestBody Industry industry) throws Exception {
@@ -101,7 +101,7 @@ class IndustryRestController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.DELETE, produces = "application/json")
-	public void deleteGroup(@PathVariable("id") String id) throws Exception {
+	public void deleteIndustry(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
 			Long industryId=Long.parseLong(id);
 			industryService.deleteById(industryId);
@@ -110,7 +110,7 @@ class IndustryRestController {
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@RequestMapping("*")
+	@RequestMapping("/*")
 	public ResponseEntity<Object> unMappedRequests() throws Exception {
 		return new ResponseEntity<>("Wrong URI or request method.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}

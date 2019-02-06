@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import teamchat.service.LanguageService;
-import teamchat.data.domain.Language;
+import teamchat.data.domain.Privilege;
 import teamchat.exception.request.IdException;
 import teamchat.exception.request.NullReferenceException;
+import teamchat.service.PrivilegeService;
 
 /**
  * 
@@ -27,84 +26,72 @@ import teamchat.exception.request.NullReferenceException;
  *
  */
 @Controller
-@RequestMapping(LanguageRestController.URI)
-class LanguageRestController {
+@RequestMapping(PrivilegeRestController.URI)
+class PrivilegeRestController {
 
-	protected static final String URI = "/api/languages";
+	protected final static String URI = "/api/privileges";
 
-	private LanguageService languageService;
+	private PrivilegeService privilegeService;
 
 	@Autowired
-	public LanguageRestController(LanguageService languageService) {
-		this.languageService = languageService;
+	public PrivilegeRestController(PrivilegeService privilegeService) {
+		super();
+		this.privilegeService = privilegeService;
 	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "", "/", "/all", "/list" }, method = RequestMethod.GET, produces = "application/json")
-	public List<Language> getAllLanguages() throws Exception {
-		return languageService.getAll();
+	public List<Privilege> getAllPrivileges() throws Exception {
+		return privilegeService.getAll();
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.GET, produces = "application/json")
-	public Language getLanguageById(@PathVariable("id") String id) throws Exception {
+	public Privilege getPrivilegesById(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long languageId=Long.parseLong(id);
-			return languageService.getById(languageId);
+			Long privilegeId = Long.parseLong(id);
+			return privilegeService.getById(privilegeId);
 		} else
-			throw new IdException("Language id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Privilege id " + id + " is not parsable.Must be an integer.");
 	}
-
-	
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	@RequestMapping(params= {"lang"},method = RequestMethod.GET, produces = "application/json")
-	public List<Language> getLanguageByLangLike(@RequestParam("lang") String lang) throws Exception { // /api/languages?lang=industryName
-		return languageService.getByLangLike(lang);
-	}
-
-	
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public Language saveLanguage(@RequestBody Language language) throws Exception {
-		if (language == null)
-			throw new NullReferenceException("Language reference binded is null.");
+	public Privilege savePrivilege(@RequestBody Privilege privilege) throws Exception {
+		if (privilege == null)
+			throw new NullReferenceException("Privilege reference binded is null.");
 
-		return languageService.create(language);
+		return privilegeService.create(privilege);
 	}
 
-	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.PUT, produces = "application/json")
-	public Language editLanguage(@PathVariable("id") String id, @RequestBody Language language)
-			throws Exception {
+	public Privilege editPrivilege(@PathVariable("id") String id, @RequestBody Privilege privilege) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long languageId = Long.parseLong(id);
-			if (language == null)
-				throw new NullReferenceException("Language reference binded is null.");
-			language.setId(languageId);
-			
-			return languageService.edit(language);
+			Long privilegeId = Long.parseLong(id);
+			if (privilege == null)
+				throw new NullReferenceException("Privilege reference binded is null.");
+			privilege.setId(privilegeId);
+			;
+
+			return privilegeService.edit(privilege);
 		} else
-			throw new IdException("Language id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Privilege id " + id + " is not parsable.Must be an integer.");
 	}
 
-	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
 	@RequestMapping(path = { "/{id}" }, method = RequestMethod.DELETE, produces = "application/json")
-	public void deleteLanguage(@PathVariable("id") String id) throws Exception {
+	public void deleteOrganization(@PathVariable("id") String id) throws Exception {
 		if (NumberUtils.isParsable(id)) {
-			Long languageId=Long.parseLong(id);
-			languageService.deleteById(languageId);
+			Long privilegeId = Long.parseLong(id);
+			privilegeService.deleteById(privilegeId);
 		} else
-			throw new IdException("Language id " + id + " is not parsable.Must be an integer.");
+			throw new IdException("Privilege id " + id + " is not parsable.Must be an integer.");
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -112,4 +99,5 @@ class LanguageRestController {
 	public ResponseEntity<Object> unMappedRequests() throws Exception {
 		return new ResponseEntity<>("Wrong URI or request method.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
+
 }

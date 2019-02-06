@@ -30,7 +30,7 @@ import teamchat.service.CurrencyService;
 @RequestMapping(CurrencyRestController.URI)
 class CurrencyRestController {
 	
-	protected final static String URI="/api/currency";
+	protected final static String URI="/api/currencies";
 	
 	private CurrencyService currencyService;
 
@@ -61,14 +61,14 @@ class CurrencyRestController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public List<Currency> getCurrencyByNameLike(@RequestParam("name") String name) throws Exception { // /api/credentials?userId=example
+	@RequestMapping(params= {"name"},method = RequestMethod.GET, produces = "application/json")
+	public List<Currency> getCurrencyByNameLike(@RequestParam("name") String name) throws Exception { // /api/currencies?name=example
 	
 	    return currencyService.getCurrencyByNameLike(name);
 	}
 
 	
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public Currency saveCurrency(@RequestBody Currency currency) throws Exception {

@@ -68,16 +68,16 @@ class DepartmentRestController {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	@RequestMapping(params= {"creatorId"},method = RequestMethod.GET, produces = "application/json")
-	public List<Department> getDepartmentsByCreatorId(@PathVariable("creatorId") String creatorId) throws Exception { // /api/departments?creatorId=007
+	public List<Department> getDepartmentsByCreatorId(@RequestParam("creatorId") String creatorId) throws Exception { // /api/departments?creatorId=007
 		if (NumberUtils.isParsable(creatorId)) {
 			Long creatorID = Long.parseLong(creatorId);
 			return departmentService.getDepartmentByCreatorId(creatorID);
 		} else
-			throw new IdException("Department id " + creatorId + " is not parsable.Must be an integer.");
+			throw new IdException("Creatort id " + creatorId + " is not parsable.Must be an integer.");
 		
 	}
 
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public Department saveDepartment(@RequestBody Department department) throws Exception {

@@ -28,7 +28,7 @@ public class PrivilegeServiceImpl implements PrivilegeService{
 
 	@Override
 	public List<Privilege> getAll() throws Exception {
-		return privilegeDao.findAll();
+		return privilegeDao.findAll();                     
 	}
 
 	@Override

@@ -60,7 +60,7 @@ class CredentialRestController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(params= {"userId"},method = RequestMethod.GET, produces = "application/json")
 	public Credential getCredentialByUserId(@RequestParam("userId") String userId) throws Exception { // /api/credentials?userId=example
 		if (NumberUtils.isParsable(userId)) {
 			Long userID = Long.parseLong(userId);
@@ -70,7 +70,7 @@ class CredentialRestController {
 
 	}
 
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public Credential saveCredential(@RequestBody Credential credential) throws Exception {

@@ -34,4 +34,6 @@ public interface GroupService {
 	public abstract Group addUsers(Group group,List<User> users) throws Exception;
 	public abstract Group removeUser(Group group,User user) throws Exception;
 	
+	public List<Group> getAllGroupsWithMembers() throws Exception;
+	
 }

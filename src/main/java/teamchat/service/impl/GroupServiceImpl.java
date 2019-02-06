@@ -129,6 +129,15 @@ public class GroupServiceImpl implements GroupService {
 		}
 		return groupDao.update(group);
 	}
+
+
+	@Override
+	public List<Group> getAllGroupsWithMembers() throws Exception {
+		List<Group> list=groupDao.findAll();
+		for(Group group:list)
+			group.getMembers();
+		return list;
+	}
     
 
 	
