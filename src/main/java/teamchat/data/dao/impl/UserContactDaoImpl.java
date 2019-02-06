@@ -88,7 +88,7 @@ public class UserContactDaoImpl implements UserContactDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserContact U where U.telephone like :var";
 		Query<UserContact> query = session.createQuery(hql, UserContact.class);
-		query.setParameter("var", telephone + "%");
+		query.setParameter("var", telephone );
 		return query.getResultList();
 	}
 
@@ -97,7 +97,7 @@ public class UserContactDaoImpl implements UserContactDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from UserContact U where U.mobile like :var";
 		Query<UserContact> query = session.createQuery(hql, UserContact.class);
-		query.setParameter("var", mobile + "%");
+		query.setParameter("var", mobile);
 		return query.getResultList();
 	}
 
