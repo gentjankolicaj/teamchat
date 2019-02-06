@@ -188,7 +188,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Message> customFindAllDeleted() throws Exception {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="from Message where M.deletionDate is not null";
+		String hql="from Message M where M.deletionDate is not null";
 		Query<Message> query=session.createQuery(hql,Message.class);
 		
 		return query.getResultList();
@@ -197,7 +197,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Message> customFindAllUnDeleted() throws Exception {
 		Session session=sessionFactory.getCurrentSession();
-		String hql="from Message where M.deletionDate is null";
+		String hql="from Message M where M.deletionDate is null";
 		Query<Message> query=session.createQuery(hql,Message.class);
 		
 		return query.getResultList();
