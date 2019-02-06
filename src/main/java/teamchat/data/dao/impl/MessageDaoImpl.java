@@ -155,7 +155,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public int customDeleteBySenderId(Long senderId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "update Message M set M.deletionDate=:date where M.sender=:senderId";
+		String hql = "update Message set deletionDate=:date where sender.id=:senderId";
 		Query<Message> query = session.createQuery(hql, Message.class);
 		query.setParameter("date", new Date());
 		query.setParameter("senderId", senderId);
@@ -166,7 +166,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public int customDeleteByReceiverId(Long receiverId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "update Message M set M.deletionDate=:date where M.receiver=:receiverId";
+		String hql = "update Message set deletionDate=:date where receiver.id=:receiverId";
 		Query<Message> query = session.createQuery(hql, Message.class);
 		query.setParameter("date",new Date());
 		query.setParameter("receiverId", receiverId);
@@ -177,7 +177,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public int customDeleteByTeamId(Long teamId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "update Message M set M.deletionDate=:date where M.team=:teamId";
+		String hql = "update Message set deletionDate=:date where team.id=:teamId";
 		Query<Message> query = session.createQuery(hql, Message.class);
 		query.setParameter("date", new Date());
 		query.setParameter("teamId", teamId);
