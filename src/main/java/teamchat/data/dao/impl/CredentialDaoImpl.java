@@ -75,7 +75,7 @@ public class CredentialDaoImpl implements CredentialDao {
 	@Override
 	public Credential findByUserId(Long userId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Credential where user_id=:var";
+		String hql = "from Credential where user.id =:var";
 		Query<Credential> query = session.createQuery(hql, Credential.class);
 		query.setParameter("var", userId);
 
