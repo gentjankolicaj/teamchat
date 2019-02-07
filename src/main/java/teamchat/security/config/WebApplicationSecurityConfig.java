@@ -13,11 +13,14 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 			"/home","/home/**",
 			"/about","/about/**",
 			"/contact","/contact/**",
+			
 			"/signin","/signin/**",	
 			"/signout","/signout/**",	
 			"/signup","/signup/**",
+			
 			"/ops","/access-denied",
-			"/api/**"		
+			"/api/**",
+			"/css/**","/fonts/**","/images/**"
 			};
 	
 	private static final String[] SECURED_URI= {
