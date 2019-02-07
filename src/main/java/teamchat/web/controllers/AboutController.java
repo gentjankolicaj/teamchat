@@ -14,7 +14,7 @@ public class AboutController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping
+	@RequestMapping(path= {"","/","/**"})
 	public String showAboutPage() {
 		return "about";
 		

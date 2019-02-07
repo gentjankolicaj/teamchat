@@ -21,7 +21,11 @@ public class SignInController {
 	}
 
 	
-	
+	@RequestMapping(path= {"","/","/**"})
+	public String showAboutPage() {
+		return "signin";
+		
+	}
 
 	
 	

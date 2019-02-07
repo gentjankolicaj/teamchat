@@ -20,7 +20,11 @@ public class SignUpController {
 		this.userService = userService;
 	}
 	
-	
+	@RequestMapping(path= {"","/","/**"})
+	public String showAboutPage() {
+		return "signup";
+		
+	}
 	
 
 }

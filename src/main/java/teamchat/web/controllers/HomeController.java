@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(HomeController.URI)
 public class HomeController {
 	
-	protected final static String URI="/home";
+	protected final static String URI="/";
 	
 	
 	public HomeController() {
@@ -18,9 +18,9 @@ public class HomeController {
 	}
 
 
-	@RequestMapping
+	@RequestMapping(path= {"","home","index","index.html","index.xhtml"})
 	public String showHome() {
-		return "home";
+		return "index";
 	}
 	
 

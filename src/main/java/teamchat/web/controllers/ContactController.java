@@ -15,7 +15,7 @@ public class ContactController {
 	}
 	
 	
-	@RequestMapping
+	@RequestMapping(path= {"","/","/**"})
 	public String showContactPage() {
 		return "contact";
 		
