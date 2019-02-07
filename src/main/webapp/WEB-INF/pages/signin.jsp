@@ -1,12 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
-
-
+<title>Signin</title>
 
 <link href="<c:url value="/css/style.css" />" rel="stylesheet"
 	type="text/css" />
@@ -28,13 +26,41 @@
 		</div>
 
 	</div>
-
-	<div id="home-body">
-		<p></p>
-
-
+	<div id="body">
+		<div class="content">
+			<div class="section">
+				<div class="contact">
+					<h2>Signin</h2>
+					<form action="signin">
+						<label for="name"> <span>email or username</span> <input type="text"
+							name="emailorusername" id="name">
+						</label> <label for="email"> <span>password</span> <input type="password"
+							name="password" id="email"></label>
+						<br>
+						<br>
+						<div id="div-submit"><button type="button" id="button-submit">Signin</button></div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="sidebar">
+				<div class="contact">
+				
+				</div>
+				<div class="featured">
+					<h3>features</h3>
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>		
 	</div>
-
+	
 	<div id="footer">
 		<div>
 			<div class="contact">
@@ -58,9 +84,7 @@
 			</div>
 		</div>
 		<div class="section">
-			<p>
-				&copy; Copyright
-			</p>
+			<p>&copy; Copyright</p>
 			<ul>
 				<li class="selected"><a href="home">home</a></li>
 
