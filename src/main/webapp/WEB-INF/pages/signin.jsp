@@ -31,14 +31,14 @@
 			<div class="section">
 				<div class="contact">
 					<h2>Signin</h2>
-					<form action="signin">
+					<form action="account" method="post">
 						<label for="name"> <span>email or username</span> <input type="text"
 							name="emailorusername" id="name">
 						</label> <label for="email"> <span>password</span> <input type="password"
 							name="password" id="email"></label>
 						<br>
 						<br>
-						<div id="div-submit"><button type="button" id="button-submit">Signin</button></div>
+						<div id="div-submit"><button type="submit" id="button-submit">Signin</button></div>
 					</form>
 				</div>
 			</div>

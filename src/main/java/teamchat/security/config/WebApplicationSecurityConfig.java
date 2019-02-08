@@ -10,7 +10,7 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	
 	private static final String[] FREE_URI= {
-			"/home","/home/**",
+			"/","/home","/home/**",
 			"/about","/about/**",
 			"/contact","/contact/**",
 			
@@ -24,7 +24,7 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 			};
 	
 	private static final String[] SECURED_URI= {
-			"/","/**",
+			"/account"
 	};
 	
 
@@ -36,8 +36,9 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers(FREE_URI).permitAll();
-		//http.authorizeRequests().antMatchers(SECURED_URI).denyAll();
+		http.authorizeRequests().antMatchers(FREE_URI).permitAll().
+		antMatchers(SECURED_URI).authenticated();
+	
 	}
 	
 

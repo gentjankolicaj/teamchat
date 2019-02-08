@@ -1,4 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib  uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE HTML>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
@@ -30,36 +33,80 @@
 				<div class="booking">
 					<h2>Create a chatspace</h2>
 					<h3>Please fill in details below :</h3>
-					<form action="signup">
+					<form action="signup/new" method="post">
 
 						
 						<div class="form1">
-							<label for="fname"> <span>first name</span> <input
-								type="text" name="fname" id="fname">
-							</label> <label for="lname"> <span>last name</span> <input
-								type="text" name="lname" id="lname">
-							</label> <label for="email3"> <span>email</span> <input
-								type="text" name="email3" id="email3">
-							</label> <label for="phone"> <span>phone number</span> <input
-								type="text" name="phone" id="phone">
-							</label> <label for="address1"> <span>address 1</span> <input
-								type="text" name="address1" id="address1">
-							</label> <label for="email"> <span>city</span> <input type="text"
-								name="city" id="email">
-							</label> <label for="phone"> <span>zipcode</span> <input
-								type="text" name="zip" id="phone">
-							</label> <br>
+						
+						<spring:bind path="user.username">
+						<label for="fname"> <span>Username</span>
+							<input type="text" name="${status.expression}" value="${status.value}" id="fname">
+							</label> 
+						</spring:bind>
+						
+						<spring:bind path="user.firstName">
+						<label for="fname"> <span>first name</span>
+							<input type="text" name="${status.expression}" value="${status.value}" id="fname">
+							</label> 
+						</spring:bind>
+							 
+						<spring:bind path="user.lastName">
+							<label for="lname"> <span>last name</span>
+							 <input	type="text" name="${status.expression}" value="${status.value}" id="lname">
+							</label> 
+							</spring:bind>
+							
+							<spring:bind path="contact.email">
+							<label for="email3"> <span>email</span> 
+							<input type="text" name="${status.expression}" value="${status.value}" id="email3">
+							</label> 
+							</spring:bind>
+							
+							<spring:bind path="contact.telephone">
+							<label for="phone"> <span>phone number</span> 
+							<input type="text" name="${status.expression}" value="${status.value}" id="phone">
+							</label> 
+							</spring:bind>
+							
+							<spring:bind path="adress.street">
+							<label for="address1"> <span>address</span> 
+							<input	type="text" name="${status.expression}" value="${status.value}" id="address1">
+							</label>
+							</spring:bind>
+							
+							<spring:bind path="adress.city">
+							 <label for="email"> <span>city</span> 
+							 <input type="text"	name="${status.expression}" value="${status.value}" id="email">
+							</label>
+							</spring:bind>
+							
+							<spring:bind path="passwordModel.password">
+							<label for="address1"> <span>password</span> 
+							<input	type="text" name="${status.expression}" value="${status.value}" id="address1">
+							</label>
+							</spring:bind>
+							
+							<spring:bind path="passwordModel.rePassword">
+							 <label for="email"> <span>re-password</span> 
+							 <input type="text"	name="${status.expression}" value="${status.value}" id="email">
+							</label>
+							</spring:bind>
+							
+							<spring:bind path="contact.postalCode">
+							 <label for="phone"> <span>postal code</span>
+							  <input type="text" name="${status.expression}" value="${status.value}" id="phone">
+							</label>
+							</spring:bind>
+							
+						
+                         
+                 
 
-							<div>
-							    <label for="state" style="margin-left:40px;"><span>Country</span>
-								<select	name="state" id="state">
-										<option value=""></option>
-										<option value=""></option>
-										<option value=""></option>
-								</select>
-								</label>
-								
-							</div>
+          <form:select path="country">
+              <form:options items="${countries}" itemValue="country" itemLabel="countryName"/>
+          </form:select>
+          
+						
 
 
 
@@ -67,24 +114,42 @@
 
 						<div class="form2">
 							<div>
-								<label for="brand"> <span>organization</span> <input
-									type="text" name="organization" id="brand">
-								</label> <label for="model"> <span>Organization email</span> <input
-									type="text" name="orgemail" id="model">
-								</label> <label for="year"> <span>tel</span> <input type="text"
-									name="tel" id="year">
-								</label> <label for="mileage"> <span>cel</span> <input
-									type="text" name="cel" id="mileage">
+								<spring:bind path="organization.name">
+								<label for="brand"> <span>organization</span>
+								 <input	type="text"  name="${status.expression}" value="${status.value}" id="brand">
+								 </label>
+							   </spring:bind>
+							   
+							   <spring:bind path="organization.email">
+								 <label for="model"> <span>Organization email</span> 
+								 <input	type="text" name="${status.expression}" value="${status.value}"  id="model">
 								</label>
+								</spring:bind>
+								
+								 <spring:bind path="organization.url">
+								<label for="year"> <span>url</span> 
+								<input type="text"	 name="${status.expression}" value="${status.value}" id="year">
+								</label>
+								</spring:bind>
+								
+								<spring:bind path="organization.phone">
+								 <label for="mileage"> <span>tel</span> 
+								 <input	type="text" name="${status.expression}" value="${status.value}" id="mileage">
+								</label>
+								</spring:bind>
+								
 							</div>
-
-							<label for="message2"> <span>description</span> <textarea
-									name="message2" id="message2" cols="30" rows="10"></textarea>
+							
+                           <spring:bind path="organization.description">
+							<label for="message2"> <span>description</span>
+							 <textarea	name="${status.expression}" value="${status.value}" id="message2" cols="30" rows="10"></textarea>
 							</label>
+							</spring:bind>
+							
 						</div>
 						<br>
 						<div id="div-submit">
-							<button type="button" id="button-submit2">Sigup</button>
+							<button type="submit" id="button-submit2">Sigup</button>
 						</div>
 					</form>
 				</div>

@@ -1901,3 +1901,21 @@ body {
 #country{
 	width:260px;
 }
+
+#account-body{
+	background: url(../images/bg-body.jpg) repeat;
+	font-family: 'PT_Sans-Web-Regular';
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 1;
+	margin: 0;
+	min-width: 960px;
+	padding: 0;
+}
+
+.members div{
+	  width: 320px;
+  padding: 10px;
+  border: 5px solid white;
+  margin: 0;
+}

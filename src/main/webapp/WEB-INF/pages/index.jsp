@@ -29,12 +29,11 @@
 
 	</div>
 
-	<div id="home-body">
-		<p></p>
-
+	<div id="home-body" style="background-color: white;">
+		
 
 	</div>
-
+   <br>
 	<div id="footer">
 		<div>
 			<div class="contact">
