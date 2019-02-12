@@ -101,6 +101,7 @@ public class User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 
 	public User(Long id, String username, String firstName, String lastName, Sex sex, Date creationDate,
 			Date deletionDate, Date modificationDate, Credential credential, UserAdress userAdress,
@@ -123,6 +124,7 @@ public class User implements Serializable {
 		this.receivedMessages = receivedMessages;
 		this.groups = groups;
 	}
+
 
 
 	public Long getId() {
@@ -273,6 +275,9 @@ public class User implements Serializable {
 	public void setGroups(List<Group> groups) {
 		this.groups = groups;
 	}
+
+
+	
 
 
 }
