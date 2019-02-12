@@ -1914,8 +1914,7 @@ body {
 }
 
 .members div{
-	  width: 320px;
+	 width: 320px;
   padding: 10px;
-  border: 5px solid white;
   margin: 0;
 }

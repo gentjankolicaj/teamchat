@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
 <head>
@@ -31,22 +32,30 @@
 			<div class="section">
 				<div class="contact">
 					<h2>Signin</h2>
-					<form action="account" method="post">
-						<label for="name"> <span>email or username</span> <input type="text"
-							name="emailorusername" id="name">
-						</label> <label for="email"> <span>password</span> <input type="password"
-							name="password" id="email"></label>
-						<br>
-						<br>
-						<div id="div-submit"><button type="submit" id="button-submit">Signin</button></div>
+					<form action="signin/auth" method="get">
+
+						<spring:bind path="authData.email">
+							<label for="name"> <span>email</span> <input type="text"
+								id="name" required name="${status.expression}"
+								value="${status.value}"></label>
+						</spring:bind>
+
+						<spring:bind path="authData.password">
+							<label for="email"> <span>password</span> <input
+								type="password" id="email" required name="${status.expression}"
+								value="${status.value}"></label>
+						</spring:bind>
+
+						<br> <br>
+						<div id="div-submit">
+							<button type="submit" id="button-submit">Signin</button>
+						</div>
 					</form>
 				</div>
 			</div>
-			
+
 			<div class="sidebar">
-				<div class="contact">
-				
-				</div>
+				<div class="contact"></div>
 				<div class="featured">
 					<h3>features</h3>
 					<ul>
@@ -58,9 +67,9 @@
 					</ul>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
-	
+
 	<div id="footer">
 		<div>
 			<div class="contact">
