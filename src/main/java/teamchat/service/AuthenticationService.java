@@ -9,6 +9,6 @@ import teamchat.data.domain.User;
  */
 public interface AuthenticationService {
 	
-	public abstract User authenticate(String emailOrUsername,String password) throws Exception;
+	public abstract User authenticate(String email,String password) throws Exception;
 
 }

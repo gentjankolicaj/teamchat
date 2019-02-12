@@ -52,5 +52,8 @@ public interface MessageService {
 	
 	public abstract Message sendMessage(User sender,Team team,String message) throws Exception;
 	
+	public abstract Message sendMessage(Message message) throws Exception;
+	
+	
 	
 }

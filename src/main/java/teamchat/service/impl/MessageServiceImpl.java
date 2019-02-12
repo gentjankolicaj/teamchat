@@ -158,6 +158,11 @@ public class MessageServiceImpl implements MessageService {
 		return messageDao.customDeleteByTeamId(teamId);
 	}
 
+	@Override
+	public Message sendMessage(Message message) throws Exception {
+		return messageDao.save(message);
+	}
+
 
 
 }
