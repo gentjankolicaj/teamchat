@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * 
@@ -26,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="user")
-@JsonIgnoreProperties({"userAdress","userContact"}) //just for testing purposes
+@JsonIgnoreProperties({"sentMessages","receivedMessages","teams","groups","credential"}) //just for testing purposes
 public class User implements Serializable {
 	
 	/**
@@ -71,11 +72,11 @@ public class User implements Serializable {
 	@OneToOne(fetch=FetchType.EAGER,mappedBy="user")
 	private Credential credential;
 	
-	
+	@JsonBackReference
 	@OneToOne(fetch=FetchType.EAGER,mappedBy="user")
 	private UserAdress userAdress;
 	
-	
+	@JsonBackReference
 	@OneToOne(fetch=FetchType.EAGER,mappedBy="user")
 	private UserContact userContact;
 	
@@ -83,11 +84,11 @@ public class User implements Serializable {
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy="users")
 	private List<Team> teams;
 	
-	
+
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="sender")
 	private List<Message> sentMessages;
 	
-	
+
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="receiver")
 	private List<Message> receivedMessages;
 	

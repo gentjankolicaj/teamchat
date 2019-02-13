@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 /**
  * 
  * @author gentjan kolicaj
@@ -35,7 +37,7 @@ public class UserAdress implements Serializable{
 	@Column(name="id")
 	private Long id;
 	
-	
+	@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;

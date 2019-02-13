@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 /**
  * 
@@ -22,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="authentication_attempt")
+@JsonIgnoreProperties({"user"})
 public class AuthenticationAttempt implements Serializable {
 	
 	/**
@@ -34,6 +38,7 @@ public class AuthenticationAttempt implements Serializable {
 	@Column(name="id")
 	private Long id;
 
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

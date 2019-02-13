@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * 
  * @author gentjan kolicaj
@@ -22,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="message")
+@JsonIgnoreProperties({"sender","receiver"})
 public class Message implements Serializable {
 
 	/**
@@ -38,10 +42,12 @@ public class Message implements Serializable {
 	@JoinColumn(name="team_id")
 	private Team team;
 	
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="sender")
 	private User sender;
 	
+
 	@ManyToOne(fetch=FetchType.EAGER,optional=true)
 	@JoinColumn(name="receiver")
 	private User receiver;
