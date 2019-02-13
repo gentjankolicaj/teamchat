@@ -128,7 +128,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Message> customFindBySenderId(Long senderId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Message where sender.id =:var and deletionDate is null";
+		String hql = "from Message M where M.sender.id =:var and M.deletionDate is null";
 		Query<Message> query = session.createQuery(hql, Message.class);
 		query.setParameter("var", senderId);
 		return query.getResultList();
@@ -137,7 +137,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Message> customFindByReceiverId(Long receiverId) throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Message where receiver.id =:var and deletionDate is null";
+		String hql = "from Message M where M.receiver.id =:var and M.deletionDate is null";
 		Query<Message> query = session.createQuery(hql, Message.class);
 		query.setParameter("var", receiverId);
 		return query.getResultList();
