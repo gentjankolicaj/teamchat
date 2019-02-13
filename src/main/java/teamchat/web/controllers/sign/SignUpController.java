@@ -19,7 +19,11 @@ import teamchat.data.domain.UserAdress;
 import teamchat.data.domain.UserContact;
 import teamchat.service.CountryService;
 import teamchat.service.SignService;
-
+/**
+ * 
+ * @author gentjan kolicaj
+ *
+ */
 @Controller
 @RequestMapping(SignUpController.URI)
 public class SignUpController {
@@ -43,9 +47,9 @@ public class SignUpController {
 
 		PasswordModel passwordModel = new PasswordModel();
 
-		UserContact contact = new UserContact();
+		UserContact userContact = new UserContact();
 
-		UserAdress adress = new UserAdress();
+		UserAdress userAdress = new UserAdress();
 
 		Organization organization = new Organization();
 
@@ -55,9 +59,9 @@ public class SignUpController {
 
 		model.addAttribute("passwordModel", passwordModel);
 
-		model.addAttribute("adress", adress);
+		model.addAttribute("userAdress", userAdress);
 
-		model.addAttribute("contact", contact);
+		model.addAttribute("userContact", userContact);
 
 		model.addAttribute("organization", organization);
 
@@ -69,7 +73,7 @@ public class SignUpController {
 
 	@RequestMapping(path = { "/new" }, method = RequestMethod.GET)
 	public String saveDetails(@ModelAttribute User user, @ModelAttribute PasswordModel passwordModel,
-			@ModelAttribute("adress") UserAdress userAdress, @ModelAttribute("contact") UserContact userContact,
+			@ModelAttribute("userAdress") UserAdress userAdress, @ModelAttribute("userContact") UserContact userContact,
 			@ModelAttribute Organization organization, @RequestParam("countryId") Long countryId,RedirectAttributes redirectAttributes) throws Exception {
 		if (passwordModel.getPassword().equals(passwordModel.getRePassword())) {
 

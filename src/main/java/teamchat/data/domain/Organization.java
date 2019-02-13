@@ -62,7 +62,7 @@ public class Organization implements Serializable {
 	private String url;
 	
 	@Column(name="email")
-	private String email;
+	private String organizationEmail;
 	
 	@Column(name="phone")
 	private String phone;
@@ -89,8 +89,8 @@ public class Organization implements Serializable {
 
 
 	public Organization(Long id, Industry industry, User creator, String name, String city, String adress,
-			Country country, String url, String email, String phone, String description, List<Department> departments,
-			Date creationDate, Date deletionDate) {
+			Country country, String url, String organizationEmail, String phone, String description,
+			List<Department> departments, Date creationDate, Date deletionDate) {
 		super();
 		this.id = id;
 		this.industry = industry;
@@ -100,7 +100,7 @@ public class Organization implements Serializable {
 		this.adress = adress;
 		this.country = country;
 		this.url = url;
-		this.email = email;
+		this.organizationEmail = organizationEmail;
 		this.phone = phone;
 		this.description = description;
 		this.departments = departments;
@@ -189,13 +189,13 @@ public class Organization implements Serializable {
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getOrganizationEmail() {
+		return organizationEmail;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setOrganizationEmail(String organizationEmail) {
+		this.organizationEmail = organizationEmail;
 	}
 
 
@@ -248,7 +248,6 @@ public class Organization implements Serializable {
 		this.deletionDate = deletionDate;
 	}
 
-	
 
 	
 }

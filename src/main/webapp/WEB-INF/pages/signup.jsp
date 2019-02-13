@@ -52,21 +52,22 @@
 								</label>
 							</spring:bind>
 
-							<spring:bind path="contact.email">
+							<spring:bind path="userContact.email">
 								<label for="email3"> <span>email *</span> <input
-									type="text" name="${status.expression}" value="${status.value}"
-									id="email3" required>
+									type="text" value="<c:out value="${status.value}"/>"
+									name="<c:out value="${status.expression}"/>" id="email3"
+									required>
 								</label>
 							</spring:bind>
 
-							<spring:bind path="contact.telephone">
+							<spring:bind path="userContact.telephone">
 								<label for="phone"> <span>phone number</span> <input
 									type="text" name="${status.expression}" value="${status.value}"
 									id="phone">
 								</label>
 							</spring:bind>
 
-							<spring:bind path="contact.postalCode">
+							<spring:bind path="userContact.postalCode">
 								<label for="email3"> <span>postal code</span> <input
 									type="text" name="${status.expression}" value="${status.value}"
 									id="email3">
@@ -74,14 +75,14 @@
 							</spring:bind>
 
 
-							<spring:bind path="adress.street">
+							<spring:bind path="userAdress.street">
 								<label for="lname"> <span>address *</span> <input
 									type="text" name="${status.expression}" value="${status.value}"
 									id="lname" required>
 								</label>
 							</spring:bind>
 
-							<spring:bind path="adress.city">
+							<spring:bind path="userAdress.city">
 								<label for="email3"> <span>city</span> <input
 									type="text" name="${status.expression}" value="${status.value}"
 									id="email3">
@@ -135,7 +136,7 @@
 									</label>
 								</spring:bind>
 
-								<spring:bind path="organization.email">
+								<spring:bind path="organization.organizationEmail">
 									<label for="email3"> <span>organization email *</span>
 										<input type="text" name="${status.expression}"
 										value="${status.value}" id="email3" required>
