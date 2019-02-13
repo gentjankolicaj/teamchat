@@ -29,11 +29,21 @@
 
 	</div>
 
-	<div id="home-body" style="background-color: white;">
-		
-
+	<div id="body">
+		<div class="content">
+			
+					<h2>Welcome to teamchat</h2>
+					<p>Teamchat is a web application for chatting.</p>
+					<ul>
+					<span>Fetures not implemented</span>
+					<li>Controll panel</li>
+					<li>Contact page message</li>
+					<li>Controll panel</li>
+					</ul>
+					
+			
+		</div>
 	</div>
-   <br>
 	<div id="footer">
 		<div>
 			<div class="contact">
