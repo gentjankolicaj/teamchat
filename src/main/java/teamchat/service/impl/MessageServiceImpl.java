@@ -3,14 +3,17 @@ package teamchat.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import teamchat.data.dao.MessageDao;
+import teamchat.data.dao.UserDao;
 import teamchat.data.domain.Message;
 import teamchat.data.domain.Team;
 import teamchat.data.domain.User;
+import teamchat.exception.request.IdException;
 import teamchat.service.MessageService;
 
 /**
@@ -23,10 +26,13 @@ import teamchat.service.MessageService;
 public class MessageServiceImpl implements MessageService {
 	
 	private MessageDao messageDao;
+	private UserDao userDao;
 	
 	@Autowired
-	public MessageServiceImpl(MessageDao messageDao) {
-		this.messageDao=messageDao;
+	public MessageServiceImpl(MessageDao messageDao, UserDao userDao) {
+		super();
+		this.messageDao = messageDao;
+		this.userDao = userDao;
 	}
 
 	@Override
@@ -161,6 +167,25 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Message sendMessage(Message message) throws Exception {
 		return messageDao.save(message);
+	}
+
+	@Override
+	public Message sendMessage(User sender, String receiverId, String message) throws Exception {
+		if(NumberUtils.isParsable(receiverId)) {
+			Long id=Long.parseLong(receiverId);
+			User receiver=userDao.findById(id);
+			Message newMessage = new Message();
+			newMessage.setSender(sender);
+			newMessage.setCreationDate(new Date());
+			newMessage.setReceiver(receiver);
+			newMessage.setMessage(message);
+			return messageDao.save(newMessage);
+			
+		}else {
+			throw new IdException("Receiver id "+receiverId+" is not parsable.Must be integer !!!");
+		}
+
+		
 	}
 
 

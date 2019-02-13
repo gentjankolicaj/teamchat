@@ -54,6 +54,8 @@ public interface MessageService {
 	
 	public abstract Message sendMessage(Message message) throws Exception;
 	
+	public abstract Message sendMessage(User sender,String receiverId,String message) throws Exception;
+	
 	
 	
 }
