@@ -1,6 +1,5 @@
 package teamchat.web.controllers.sign;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,122 +8,88 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teamchat.data.domain.Country;
-import teamchat.data.domain.Credential;
 import teamchat.data.domain.Organization;
 import teamchat.data.domain.PasswordModel;
 import teamchat.data.domain.User;
 import teamchat.data.domain.UserAdress;
 import teamchat.data.domain.UserContact;
-import teamchat.security.HashFunction;
 import teamchat.service.CountryService;
-import teamchat.service.CredentialService;
-import teamchat.service.OrganizationService;
-import teamchat.service.UserAdressService;
-import teamchat.service.UserContactService;
-import teamchat.service.UserService;
+import teamchat.service.SignService;
 
 @Controller
 @RequestMapping(SignUpController.URI)
 public class SignUpController {
-	
-	protected final static String URI="/signup";
-	
-	private UserService userService;
-	private UserAdressService userAdressService;
-	private UserContactService userContactService;
-	
-	private OrganizationService organizationService;
+
+	protected final static String URI = "/signup";
+
 	private CountryService countryService;
-	private CredentialService credentialService;
-	
+	private SignService signService;
 
-	public SignUpController(UserService userService, UserAdressService userAdressService,
-			UserContactService userContactService, OrganizationService organizationService,
-			CountryService countryService, CredentialService credentialService) {
+	@Autowired
+	public SignUpController(CountryService countryService, SignService signService) {
 		super();
-		this.userService = userService;
-		this.userAdressService = userAdressService;
-		this.userContactService = userContactService;
-		this.organizationService = organizationService;
 		this.countryService = countryService;
-		this.credentialService = credentialService;
+		this.signService = signService;
 	}
 
-	@RequestMapping(path= {"","/","/**"},method=RequestMethod.GET)
-	public String showSignUpPage(Model model) throws Exception{
-	
-		
-		User user=new User();
-		
-		PasswordModel passwordModel=new PasswordModel();
-		
-		UserContact contact=new UserContact();
-		
-		UserAdress adress=new UserAdress();
-		
-		Organization organization=new Organization();
-		
-		Country country=new Country();
-		
-		List<Country> countries=countryService.getAll();
-		
+	@RequestMapping(path = { "", "/", "/**" }, method = RequestMethod.GET)
+	public String showSignUpPage(Model model) throws Exception {
+
+		User user = new User();
+
+		PasswordModel passwordModel = new PasswordModel();
+
+		UserContact contact = new UserContact();
+
+		UserAdress adress = new UserAdress();
+
+		Organization organization = new Organization();
+
+		List<Country> countries = countryService.getAll();
+
 		model.addAttribute("user", user);
-		
-		model.addAttribute("passwordModel",passwordModel);
-		
-		model.addAttribute("adress",adress);
-		
-		model.addAttribute("contact",contact);
-		
-		model.addAttribute("organization",organization);
-		
-		model.addAttribute("countries",countries);
-		
-		model.addAttribute("country",country);
-		
+
+		model.addAttribute("passwordModel", passwordModel);
+
+		model.addAttribute("adress", adress);
+
+		model.addAttribute("contact", contact);
+
+		model.addAttribute("organization", organization);
+
+		model.addAttribute("countries", countries);
+
 		return "signup";
+
+	}
+
+	@RequestMapping(path = { "/new" }, method = RequestMethod.GET)
+	public String saveDetails(@ModelAttribute User user, @ModelAttribute PasswordModel passwordModel,
+			@ModelAttribute("adress") UserAdress userAdress, @ModelAttribute("contact") UserContact userContact,
+			@ModelAttribute Organization organization, @RequestParam("countryId") Long countryId,RedirectAttributes redirectAttributes) throws Exception {
+		if (passwordModel.getPassword().equals(passwordModel.getRePassword())) {
+
+			try {
+
+				User tmp=signService.signUp(user, userContact, userAdress, passwordModel, countryId, organization);
+				
+		  	     redirectAttributes.addFlashAttribute("signedUpUser",tmp); //added as an attribute to be carried during redirect,this is the only way not (model.addAttribute)
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+				return "redirect:/signup";
+			}
+
+			return "redirect:/account/up";
+			
+		} else 
+			return "redirect:/signup";
 		
 	}
-	
-	@RequestMapping(path= {"/new"},method=RequestMethod.POST)
-	public String saveDetails(@ModelAttribute User user,@ModelAttribute PasswordModel passwordModel,@ModelAttribute UserAdress adress,@ModelAttribute UserContact contact,@ModelAttribute Organization organization,@ModelAttribute Country country) throws Exception{
-		if(passwordModel.getPassword().equals(passwordModel.getRePassword())) {
-		country=countryService.getById(1L);
-		
-		Credential credential=new Credential();
-		credential.setPassword(passwordModel.getPassword());
-		credential.setCreationDate(new Date());
-		credential.setHashFunction(HashFunction.NONE.getValue());
-		credential.setUser(user);
-		
-		user.setCreationDate(new Date());
-		user.setCredential(credential);
-		userService.create(user);
-		
-		credentialService.create(credential);
-		
-		adress.setCreationDate(new Date());
-		adress.setUser(user);
-		adress.setCountry(country);
-		userAdressService.create(adress);
-		
-		contact.setCreationDate(new Date());
-		contact.setUser(user);
-		userContactService.create(contact);
-		
-		organization.setCreationDate(new Date());
-		organization.setCreator(user);
-		organization.setCountry(country);
-		organizationService.create(organization);
-		
-		
-		return "redirect:/account";
-		}else {
-			return "signup";
-		}
-	}
-	
 
 }

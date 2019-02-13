@@ -7,6 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(SignOutController.URI)
 public class SignOutController {
 	
-	protected final static String URI="/signup";
+	protected final static String URI="/signout";
+
+	public SignOutController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	@RequestMapping(path= {"","/","/**"})
+	public String showSignOut() {
+		
+		return "redirect:/signin";
+	}
+	
 
 }
