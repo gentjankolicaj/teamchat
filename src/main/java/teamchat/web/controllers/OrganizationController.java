@@ -1,4 +1,4 @@
-package teamchat.web.controllers.sign;
+package teamchat.web.controllers;
 
 import java.util.List;
 
@@ -25,16 +25,16 @@ import teamchat.service.SignService;
  *
  */
 @Controller
-@RequestMapping(SignUpController.URI)
-public class SignUpController {
+@RequestMapping(OrganizationController.URI)
+public class OrganizationController {
 
-	protected final static String URI = "/signup";
+	protected final static String URI = "/organization";
 
 	private CountryService countryService;
 	private SignService signService;
 
 	@Autowired
-	public SignUpController(CountryService countryService, SignService signService) {
+	public OrganizationController(CountryService countryService, SignService signService) {
 		super();
 		this.countryService = countryService;
 		this.signService = signService;
@@ -51,6 +51,8 @@ public class SignUpController {
 
 		UserAdress userAdress = new UserAdress();
 
+		Organization organization = new Organization();
+
 		List<Country> countries = countryService.getAll();
 
 		model.addAttribute("user", user);
@@ -61,33 +63,36 @@ public class SignUpController {
 
 		model.addAttribute("userContact", userContact);
 
+		model.addAttribute("organization", organization);
+
 		model.addAttribute("countries", countries);
 
-		return "signup";
+		return "organization";
 
 	}
 
 	@RequestMapping(path = { "/new" }, method = RequestMethod.GET)
 	public String saveDetails(@ModelAttribute User user, @ModelAttribute PasswordModel passwordModel,
-			@ModelAttribute("userAdress") UserAdress userAdress, @ModelAttribute("userContact") UserContact userContact, @RequestParam("countryId") Long countryId,RedirectAttributes redirectAttributes) throws Exception {
+			@ModelAttribute("userAdress") UserAdress userAdress, @ModelAttribute("userContact") UserContact userContact,
+			@ModelAttribute Organization organization, @RequestParam("countryId") Long countryId,RedirectAttributes redirectAttributes) throws Exception {
 		if (passwordModel.getPassword().equals(passwordModel.getRePassword())) {
 
 			try {
 
-				User tmp=signService.signUp(user, userContact, userAdress, passwordModel, countryId);
+				User tmp=signService.signUp(user, userContact, userAdress, passwordModel, countryId, organization);
 				
 		  	     redirectAttributes.addFlashAttribute("signedUpUser",tmp); //added as an attribute to be carried during redirect,this is the only way not (model.addAttribute)
 
 			} catch (Exception e) {
 				e.printStackTrace();
 				
-				return "redirect:/signup";
+				return "redirect:/organization";
 			}
 
 			return "redirect:/account/up";
 			
 		} else 
-			return "redirect:/signup";
+			return "redirect:/organization";
 		
 	}
 

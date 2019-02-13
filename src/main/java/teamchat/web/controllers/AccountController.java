@@ -1,12 +1,10 @@
 package teamchat.web.controllers;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +13,14 @@ import teamchat.data.domain.Message;
 import teamchat.data.domain.Team;
 import teamchat.data.domain.User;
 import teamchat.service.MessageService;
-import teamchat.service.SignService;
 import teamchat.service.TeamService;
 import teamchat.service.UserService;
 
+/**
+ * 
+ * @author gentjan kolicaj
+ *
+ */
 @Controller
 @RequestMapping(AccountController.URI)
 class AccountController {
