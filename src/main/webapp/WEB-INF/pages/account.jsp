@@ -108,13 +108,26 @@
 
 					<div class="sent" style="width: 50%; float: left;">
 						<h3>Sent</h3>
+						
 						<ul style="list-style: none">
+						
 						 <c:forEach var="sentMessage" items="${sentMessages}">
 						 <li>To- [ <span>${sentMessage.receiver.firstName}  ${sentMessage.receiver.lastName}</span> ] <span>:  ${sentMessage.message}</span></li>
 						 </c:forEach>
+						 </ul>
+						 
+						 <table class="container">
+				
+                    	 <tbody>
+		                   <c:forEach var="sentMessage" items="${sentMessages}">
+						 <tr><td>To- [ <span>${sentMessage.receiver.firstName}  ${sentMessage.receiver.lastName}</span> ] <span>:  ${sentMessage.message}</span></td>
+						 </c:forEach>
+	                     <tbody>
+	                    </tbody>
+                       </table>
 							
 
-						</ul>
+					
 
 					</div>
 
