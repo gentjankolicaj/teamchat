@@ -23,6 +23,7 @@
 
 				<li class="booking"><a href="signin">signin</a></li>
 				<li class="booking"><a href="signup">signup</a></li>
+				<li class="booking"><a href="organization">organization</a></li>
 			</ul>
 		</div>
 
@@ -31,7 +32,7 @@
 		<div class="content">
 			<div class="section">
 				<div class="contact">
-					<h2>Signin</h2>
+					<h2>user signin</h2>
 					<form action="signin/auth" method="get">
 
 						<spring:bind path="authData.email">

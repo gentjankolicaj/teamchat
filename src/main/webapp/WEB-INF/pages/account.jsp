@@ -102,7 +102,7 @@
 
 
 
-				<div class="messsages" style="height: 550px;">
+				<div class="messsages">
 
 					<div class="sent" style="width: 50%; float: left;">
 						<section>

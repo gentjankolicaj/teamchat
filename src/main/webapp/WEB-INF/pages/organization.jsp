@@ -32,7 +32,7 @@
 		<div class="content">
 			<div class="section">
 				<div class="booking">
-					<h2>New user</h2>
+					<h2>Create an organization</h2>
 					<h3>Please fill in details below :</h3>
 					<form action="signup/new" method="get">
 
@@ -90,33 +90,80 @@
 								</label>
 							</spring:bind>
 
-							<label for="phone"> <span>Country *</span><select
-								name="countryId" required>
-									<c:forEach var="country" items="${countries}">
-										<option value="${country.id}">${country.countryName}</option>
-									</c:forEach>
-							</select>
-							</label>
-
 							<spring:bind path="user.username">
 								<label for="fname"> <span>Username *</span> <input
 									type="text" name="${status.expression}" value="${status.value}"
 									id="fname" required>
 								</label>
 							</spring:bind>
-
-
 							<spring:bind path="passwordModel.password">
 								<label for="email3"> <span>password *</span> <input
-									type="password" name="${status.expression}"
-									value="${status.value}" id="email3" required>
+									type="password" name="${status.expression}" value="${status.value}"
+									id="email3" required>
 								</label>
 							</spring:bind>
 
 							<spring:bind path="passwordModel.rePassword">
 								<label for="phone"> <span>re-password *</span> <input
-									type="password" name="${status.expression}"
-									value="${status.value}" id="phone" required>
+									type="password" name="${status.expression}" value="${status.value}"
+									id="phone" required>
+								</label>
+							</spring:bind>
+
+
+						</div>
+
+						<div class="form1">
+							<div>
+
+								<spring:bind path="organization.name">
+									<label for="fname"> <span>Organization name *</span> <input
+										type="text" name="${status.expression}"
+										value="${status.value}" id="fname" required>
+									</label>
+								</spring:bind>
+
+								<spring:bind path="organization.adress">
+									<label for="fname"> <span>Organization adress *</span>
+										<input type="text" name="${status.expression}"
+										value="${status.value}" id="fname" required>
+									</label>
+								</spring:bind>
+
+								<spring:bind path="organization.url">
+									<label for="lname"> <span>organization url</span> <input
+										type="text" name="${status.expression}"
+										value="${status.value}" id="lname">
+									</label>
+								</spring:bind>
+
+								<spring:bind path="organization.organizationEmail">
+									<label for="email3"> <span>organization email *</span>
+										<input type="text" name="${status.expression}"
+										value="${status.value}" id="email3" required>
+									</label>
+								</spring:bind>
+
+								<spring:bind path="organization.phone">
+									<label for="phone"> <span>organization phone</span> <input
+										type="text" name="${status.expression}"
+										value="${status.value}" id="phone">
+									</label>
+								</spring:bind>
+
+
+								<span>Country</span> <select name="countryId" required>
+									<c:forEach var="country" items="${countries}">
+										<option value="${country.id}">${country.countryName}</option>
+									</c:forEach>
+
+								</select>
+							</div>
+
+							<spring:bind path="organization.description">
+								<label for="message2"> <span>description</span> <textarea
+										name="${status.expression}" value="${status.value}"
+										id="message2" cols="30" rows="10"></textarea>
 								</label>
 							</spring:bind>
 

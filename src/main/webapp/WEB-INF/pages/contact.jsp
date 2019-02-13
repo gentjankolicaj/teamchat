@@ -23,6 +23,7 @@
 
 				<li class="booking"><a href="signin">signin</a></li>
 				<li class="booking"><a href="signup">signup</a></li>
+				<li class="booking"><a href="organization">organization</a></li>
 			</ul>
 		</div>
 

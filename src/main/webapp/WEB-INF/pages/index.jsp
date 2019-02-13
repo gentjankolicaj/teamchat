@@ -24,6 +24,7 @@
 
 				<li class="booking"><a href="signin">signin</a></li>
 				<li class="booking"><a href="signup">signup</a></li>
+				<li class="booking"><a href="organization">organization</a></li>
 			</ul>
 		</div>
 
@@ -35,10 +36,13 @@
 					<h2>Welcome to teamchat</h2>
 					<p>Teamchat is a web application for chatting.</p>
 					<ul>
-					<span>Fetures not implemented</span>
-					<li>Controll panel</li>
+					<span>To be implemented functionalities :</span>
+					<li>Input validation</li>
+					<li>Spring security</li>
+					<li>Control panel</li>
+					<li>User display according to organization</li>
 					<li>Contact page message</li>
-					<li>Controll panel</li>
+					<li>And many others for which backend services are ready...</li>
 					</ul>
 					
 			
