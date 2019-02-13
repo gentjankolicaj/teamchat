@@ -1,6 +1,7 @@
 package tests.core.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import teamchat.data.dao.AuthenticationAttemptDao;
 import teamchat.data.domain.AuthenticationAttempt;
 import tests.core.MyAbstractWebAppContext;
+
 
 @Transactional
 public class AuthenticationAttemptDaoImplTest extends MyAbstractWebAppContext {

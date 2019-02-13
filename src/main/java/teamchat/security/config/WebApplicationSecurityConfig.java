@@ -5,12 +5,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
+import teamchat.security.HashFunction;
+
 @EnableWebSecurity
 public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	//how to hash user passwords
+	public static final HashFunction PASSWORD_HASHING_FUNCTION=HashFunction.SHA_256;
+	
 	
 	private static final String[] FREE_URI= {
-			"/","/home","/home/**",
+			"/home","/home/**",
 			"/about","/about/**",
 			"/contact","/contact/**",
 			
@@ -24,8 +30,11 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 			};
 	
 	private static final String[] SECURED_URI= {
-			"/account"
+			"/account","/account/**"
 	};
+		
+	
+	
 	
 
 	@Override
@@ -36,8 +45,8 @@ public class WebApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers(FREE_URI).permitAll().
-		antMatchers(SECURED_URI).authenticated();
+		
+		http.authorizeRequests().antMatchers(FREE_URI).permitAll();
 	
 	}
 	

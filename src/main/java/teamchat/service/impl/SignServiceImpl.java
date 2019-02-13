@@ -123,5 +123,45 @@ public class SignServiceImpl implements SignService {
 		return null;
 	}
 
+	@Transactional(rollbackFor = Exception.class) 
+	@Override
+	public User signUp(User user, UserContact userContact, UserAdress userAdress, PasswordModel passwordModel,
+			Long countryId) throws Exception {
+		Country country = countryService.getById(countryId);
+
+		Credential credential = new Credential();
+		credential.setPassword(passwordModel.getPassword());
+		credential.setCreationDate(new Date());
+		credential.setHashFunction(HashFunction.NONE.getValue());
+		
+		//hashPassword
+		credential=passwordService.hashPassword(credential, WebApplicationSecurityConfig.PASSWORD_HASHING_FUNCTION);
+		credential.setUser(user);
+
+		user.setCreationDate(new Date());
+		user.setCredential(credential);
+		User tmp=userService.create(user);
+
+		credentialService.create(credential);
+
+		userAdress.setCreationDate(new Date());
+		userAdress.setUser(user);
+		userAdress.setCountry(country);
+		userAdressService.create(userAdress);
+
+		userContact.setCreationDate(new Date());
+		userContact.setUser(user);
+		userContactService.create(userContact);
+
+		AuthenticationAttempt firstAuthAttempt = new AuthenticationAttempt();
+		firstAuthAttempt.setCreationDate(new Date());
+		firstAuthAttempt.setStatus(AuthStatus.SUCCESS.getValue());
+		firstAuthAttempt.setUser(user);
+		firstAuthAttempt.setPlatfrom(Platform.WEB.getValue());
+		authAttemptService.create(firstAuthAttempt);
+
+		return tmp;
+	}
+
 	
 }
